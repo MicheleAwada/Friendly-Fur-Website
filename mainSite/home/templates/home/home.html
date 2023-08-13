@@ -1,0 +1,21 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'home/home.css' %}"/>
+{% endblock %}
+{% block body %}
+<main>
+    <section class="info-content">
+        <div class="text-info-content">
+            <p class="bigFont">
+                Montly Pet Crates
+            </p>
+            <p style="margin-right: 10%; font-size: 1.25em;">
+                We specialize in producing Affordable High Quality toys, treats, and memories for you and your pet.
+            </p>
+        </div> 
+            <img src="{% static 'home/images/dog-content-home-2.jpg' %}">
+    </section>
+</main>
+{% endblock %}

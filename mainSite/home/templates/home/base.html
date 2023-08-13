@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    {% block head %} {%  endblock %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'home/base.css' %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'home/images/favicon.ico' %}" type="image/x-icon">
+    <title>Friendly Fur - {% block title %}{% endblock %}</title>
+</head>
+<body>
+  <header>
+    <a href="{% url 'home' %}">
+      <img id="logoImage"  src="{% static 'home/images/default logo.svg' %}" alt="logo"/>
+    </a>
+    <nav>
+      <ul class="nav__links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Shop</a></li>
+        <li><a href="#">Toys</a></li>
+        <li><a href="#">About us</a></li>
+      </ul>
+    </nav>
+    <nav><a class="link-nav-buttons link-login-button"><button>
+      Login 
+    </button></a>
+    <a class="link-nav-buttons"><button>
+      Register 
+    </button></a></nav>
+  </header>
+  {% block body %} {% endblock %}
+</body>
+</html>

@@ -1,0 +1,92 @@
+@font-face {
+    font-family: "MondayFeelings";
+    src: url(font/MondayFeelings.ttf) format("truetype");
+}
+
+* {
+    margin:0;
+    padding:0;
+}
+
+header {
+    position: fixed;
+    top:0;
+    z-index: 10000;
+    height:100px;
+    width:100%;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(235,235,235);
+    margin:0;
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+    background-color: white;
+}
+
+
+#logoImage {
+    height:100px;
+}
+
+.nav__links {
+    list-style: none;
+}
+
+.nav__links li{
+    display:inline-block;
+}
+
+.nav__links li a{
+    text-decoration: none;
+    transition: all 0.3s ease 0s;
+    font-size: 24px;
+}
+
+.nav__links li a:hover{
+    /* color: lightskyblue; */
+    color: #4d79ff;
+}
+
+.nav__links li a, .link-nav-buttons button {
+    font-family: 'MondayFeelings', sans-serif;
+    font-weight: 500;
+    color: rgb(43,27,23);
+    margin:16px;
+}
+.link-nav-buttons button {
+    font-size: 16px;
+    background-color: #668cff;
+    /* background-image: linear-gradient(to right, #668cff, #56CAC8); */
+    padding: 8px 16px;
+    margin: 16px;
+    color:white;
+    border-radius: 50px;
+    transition: all 270ms ease 0s;
+    border: none;
+}
+.link-nav-buttons button:hover {
+    background-color: #4d79ff;
+    /* background-image: linear-gradient(to right, #4d79ff, #51c8c6); */
+    /* padding: 10px;
+    margin: 40px;
+    font-size: 30px; */
+    
+    cursor:pointer;
+}
+
+.link-login-button button{
+    background-image: none;
+    background-color: white;
+    border: solid 3px #668cff;
+    color: rgb(43,27,23);
+}
+.link-login-button button:hover{
+    background-image: none;
+    background-color: rgb(235,235,235);
+    border: solid 3px #4d79ff;
+    color: rgb(43,27,23);
+}
