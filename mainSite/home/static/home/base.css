@@ -12,7 +12,7 @@ header {
     position: fixed;
     top:0;
     z-index: 10000;
-    height:100px;
+    height:10vh;
     width:100%;
     display:flex;
     align-items: center;
@@ -29,7 +29,7 @@ html, body {
 
 
 #logoImage {
-    height:100px;
+    height:10vh;
 }
 
 .nav__links {
@@ -57,18 +57,21 @@ html, body {
     color: rgb(43,27,23);
     margin:16px;
 }
-.link-nav-buttons button {
+.link-nav-buttons button, .button1 {
     font-size: 16px;
     background-color: #668cff;
     /* background-image: linear-gradient(to right, #668cff, #56CAC8); */
     padding: 8px 16px;
-    margin: 16px;
     color:white;
     border-radius: 50px;
     transition: all 270ms ease 0s;
     border: none;
+    text-decoration: none;
 }
-.link-nav-buttons button:hover {
+.link-nav-buttons {
+    margin: 16px;
+}
+.link-nav-buttons button:hover, .button1:hover{
     background-color: #4d79ff;
     /* background-image: linear-gradient(to right, #4d79ff, #51c8c6); */
     /* padding: 10px;
@@ -78,13 +81,14 @@ html, body {
     cursor:pointer;
 }
 
-.link-login-button button{
+.link-login-button button, .button2{
     background-image: none;
     background-color: white;
     border: solid 3px #668cff;
+    text-decoration: none;
     color: rgb(43,27,23);
 }
-.link-login-button button:hover{
+.link-login-button button:hover, .button2:hover{
     background-image: none;
     background-color: rgb(235,235,235);
     border: solid 3px #4d79ff;

@@ -6,16 +6,76 @@
 {% endblock %}
 {% block body %}
 <main>
-    <section class="info-content">
-        <div class="text-info-content">
-            <p class="bigFont">
-                Montly Pet Crates
-            </p>
-            <p style="margin-right: 10%; font-size: 1.25em;">
-                We specialize in producing Affordable High Quality toys, treats, and memories for you and your pet.
-            </p>
-        </div> 
-            <img src="{% static 'home/images/dog-content-home-2.jpg' %}">
+    <section style="position: relative;">
+    <img class="screen-width-image" src="{% static 'home/images/Dog toy main home.png' %}"/>
+    <p class="image-write" style="top:4%;left:3%;font-size: 3em;width: 30%;font-weight: 600;">Toys and Treats for Dogos</p>
+    <p class="image-write" style="top:28%;left:3%;font-size: 1.25em;width: 20%;">
+        Provide affordable high quality toys and food for your good boy
+    </p>
+    <a class="button1 image-write" style="bottom: 10%; left: 3%;font-size: 1.75em;" href="#">Shop Now</a>
+    </section>
+    <section class="home-white-offer">
+        <p class="font" style="text-align: center; font-size: 3em; font-weight: 500; margin: 40px 25px 25px 25px">What We Offer</p>
+        <div class="product-offer-container"> 
+            <div class="product-offer"> 
+                <p class="font product-offer-main-text">Dog Toys</p>
+                <p class="font product-offer-second-text">High Quality Toys made with LOVE</p>
+                <img src="https://cdn.thewirecutter.com/wp-content/media/2021/12/dog-toys-2048px-0010.jpg" alt="dog toy" class="screen-width-image">
+                <button class="button1 button2" style="display: block; margin: 16px auto;">Shop</button>
+            </div>
+            <div class="product-offer"> 
+                <p class="font product-offer-main-text">Monthly Crates</p>
+                <p class="font product-offer-second-text">Filled Goodies sent at your Doorstep
+                    Every Month</p>
+                <img src="{% static 'home/images/product offer 2.jpg' %}" alt="dog toy" class="screen-width-image">
+                <button class="button1 button2" style="display: block; margin: 16px auto;">Shop</button>
+            </div>
+            <div class="product-offer"> 
+                <p class="font product-offer-main-text">Tasty Treats</p>
+                <p class="font product-offer-second-text">Show your dog love with our high quality
+                    allergy customizable treats</p>
+                <img src="{% static 'home/images/product offer 3.png' %}" alt="dog toy" class="screen-width-image">
+                <button class="button1 button2" style="display: block; margin: 16px auto;">Shop</button>
+            </div>
+        </div>
+    </section>
+    <section class="who-us">
+        <img class="screen-width-image" style="z-index: -10;" src="{% static 'home/images/who are we.png' %}" alt="Who are we"/>
+        <p class="font image-write" style="font-size: 1.5em; font-weight: 200; font-style: normal; top: 5%; left: 6%; width: 50%;">
+            <span style="font-style: italic; font-weight: 700; font-size: 3em;">Who are we</span>
+            <br>
+            Based in California, we take pride in putting a smile on
+            dogs faces. We have been sending high quality toys,
+            treats, and monthly crates since 2020. 
+        </p>
+    </section>
+    <section class="rating-parent-container" style="margin: 0;">
+        <p class="font" style="text-align: center; font-size: 3em; font-weight: 500; margin: 5% 0;">
+            What our customers have to say
+        </p>
+        <div class="rating-container">
+            <div class="rating-child-container">
+                <p class="rating-title">John Wilson</p>
+                <img class="rating-stars" src="{% static 'home/images/5star.svg' %}"/>
+                <p class="rating-text">
+                    My Dog max has never seen better days. I got the monthly subscription. His favorite toy is the sqeaky fish he takes it everywhere he goes. He also goes crazy for the cookie pal treats.
+                </p>
+            </div>
+            <div class="rating-child-container">
+                <p class="rating-title">John Wilson</p>
+                <img class="rating-stars" src="{% static 'home/images/5star.svg' %}"/>
+                <p class="rating-text">
+                    My Dog max has never seen better days. I got the monthly subscription. His favorite toy is the sqeaky fish he takes it everywhere he goes. He also goes crazy for the cookie pal treats.
+                </p>
+            </div>
+            <div class="rating-child-container">
+                <p class="rating-title">John Wilson</p>
+                <img class="rating-stars" src="{% static 'home/images/5star.svg' %}"/>
+                <p class="rating-text">
+                    My Dog max has never seen better days. I got the monthly subscription. His favorite toy is the sqeaky fish he takes it everywhere he goes. He also goes crazy for the cookie pal treats.
+                </p>
+            </div>
+        </div>
     </section>
 </main>
 {% endblock %}
