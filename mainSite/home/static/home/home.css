@@ -58,7 +58,7 @@ main {
 .rating-parent-container {
     background-color: #ffccff;
     width: 100%;
-    height: 80vmin;
+    height: 70vmin;
     display: flex;
     flex-direction: column;
 }
@@ -68,14 +68,13 @@ main {
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    align-content: space-between;
+    align-content: space-around;
     flex-grow: 1;
-    margin: 0 0 3% 0;
 }
 
 .rating-child-container{
     width: 40%;
-    height: auto;
+    height: 40%;
     background-color: #ff61cf;
     border-radius: 4vmin;
 }
@@ -84,16 +83,138 @@ main {
     display: inline-block;  
     font-size: 1.3em;
     color: white;
-    margin: 2% 4%;
 }
 .rating-stars {
     display: inline-block;
     height: 1.3em;
     float: right;
-    margin: 2% 4%;
 }
 
 .rating-text {
-    margin: 2% 4%;
     color: white;
+    margin: 2% 4%;
+}
+
+.rating-profile-pic {
+    border-radius: 100vmin;
+    width: auto;
+    height: 1.3em;
+}
+
+.rating-info {
+    margin: 4% 8%;
+    height: 10%;
+}
+
+.science {
+    background-color: #92e6e6;
+    height: 60vmin;
+    width: 100%;
+}
+
+.science-title {
+    color: white;
+    text-decoration: underline;
+    font-size: 3em;
+    text-align: center;
+    font-family: Montserrat;
+    font-weight: 600;
+}
+
+.science-fact {
+    text-align: right;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.science-fact .science-bold {
+    font-weight: 500;
+}
+
+.science-text {
+    color: white;
+    margin: 4% 10%;
+    font-family: Montserrat;
+    font-size: 1.5em;
+}
+
+
+
+.science-recommend {
+    font-weight: 300;
+}
+.science-recommend .science-bold {
+    font-weight: 400;
+}
+
+footer {
+    background-color: #002c63;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+footer #info {
+    background-color: #002c54;
+    margin-top: auto;
+    height: 2.5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer #info a{
+    text-decoration: none;
+    margin: 0 4%;
+    font-family: "Montserrat";
+}
+
+footer>#main {
+    display: flex;
+    height: 80%;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin: 3% 0;
+}
+
+footer * {color:white;}
+
+.brand-slogan {
+    font-family: "MondayFeelings";
+}
+
+.flex-symbol {
+    display: flex;
+    flex-flow: row nowrap;
+    height: 1.5em;
+    align-items: center;
+    margin: 3% 0;
+}
+
+.flex-symbol img{
+    height: 100%;
+    width: auto;
+    margin: 0.25em;
+    display: inline;
+}
+.flex-symbol text {
+    font-size: 1.5em;
+    font-family: "Montserrat";
+}
+
+footer a {
+    text-decoration: none;
+}
+
+#main-txt {
+    font-size: 2em;
+    font-family: "Montserrat";
+    font-weight: 600;
+}
+
+#browse a{
+    display: block;
+    font-size: 1.5em;
+    font-family: "Montserrat";
 }

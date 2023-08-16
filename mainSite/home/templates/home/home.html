@@ -50,32 +50,86 @@
         </p>
     </section>
     <section class="rating-parent-container" style="margin: 0;">
-        <p class="font" style="text-align: center; font-size: 3em; font-weight: 500; margin: 5% 0;">
+        <p class="font" style="text-align: center; font-size: 3em; font-weight: 500; margin: 1% 0;color: #da419f;">
             What our customers have to say
         </p>
         <div class="rating-container">
             <div class="rating-child-container">
-                <p class="rating-title">John Wilson</p>
-                <img class="rating-stars" src="{% static 'home/images/5star.svg' %}"/>
+                <div class="rating-info">
+                    <img src="{% static 'home/images/profile/dan.png' %}" class="rating-profile-pic"/>
+                    <p class="rating-title font">John Wilson</p>
+                    <img class="rating-stars" src="{% static 'home/images/5star.svg' %}"/>
+                </div>
                 <p class="rating-text">
                     My Dog max has never seen better days. I got the monthly subscription. His favorite toy is the sqeaky fish he takes it everywhere he goes. He also goes crazy for the cookie pal treats.
                 </p>
             </div>
             <div class="rating-child-container">
-                <p class="rating-title">John Wilson</p>
-                <img class="rating-stars" src="{% static 'home/images/5star.svg' %}"/>
+                <div class="rating-info">
+                    <img src="{% static 'home/images/profile/girl.png' %}" class="rating-profile-pic"/>
+                    <p class="rating-title font">Maria Garcia</p>
+                    <img class="rating-stars" src="{% static 'home/images/5star.svg' %}"/>
+                </div>
                 <p class="rating-text">
-                    My Dog max has never seen better days. I got the monthly subscription. His favorite toy is the sqeaky fish he takes it everywhere he goes. He also goes crazy for the cookie pal treats.
+                    I got the fetch toys for my girl bella, I've never seen her be so happy and exicted to play.
                 </p>
             </div>
             <div class="rating-child-container">
-                <p class="rating-title">John Wilson</p>
-                <img class="rating-stars" src="{% static 'home/images/5star.svg' %}"/>
+                <div class="rating-info">
+                    <img src="{% static 'home/images/profile/arab.png' %}" class="rating-profile-pic"/>
+                    <p class="rating-title font">Abed Fadel</p>
+                    <img class="rating-stars" src="{% static 'home/images/5star.svg' %}"/>
+                </div>
                 <p class="rating-text">
-                    My Dog max has never seen better days. I got the monthly subscription. His favorite toy is the sqeaky fish he takes it everywhere he goes. He also goes crazy for the cookie pal treats.
+                    I've always wanted to teach my dog to sit on command and after purchasing the bundle treats, it was a breeze to teach her.
                 </p>
             </div>
         </div>
     </section>
+    <section class="science">
+        <p class="science-title">What Experts Have to Say</p>
+        <p class="science-fact science-text"><span class="science-bold">Dog toys are a necessity for every pet parent. </span>Not only can they help keep your dog occupied, but they provide them with mental stimulation to prevent boredom and destructive behavior.</p>
+        <p class="science-recommend science-text"><span class="science-bold">This is why we highly recommend our monthly subscription. </span>Where we deliver a customizable crate filled with new exciting toys and treats, each Month!</p>
+    </section>
+    <footer>
+        <div id="main">
+            <div id="brand-info">
+                <img src="{% static 'home/images/footer logo.svg' %}" height="30%" width="auto"/>
+                <p class="brand-slogan">Puttin smiles on dogs faces</p>
+            </div>
+            <div id="browse">
+                <p id="main-txt">Browse</p>
+                <ul>
+                    <a href="#">Home</a>
+                    <a href="#">Shop</a>
+                    <a href="#">Toys</a>
+                    <a href="#">Treats</a>
+                    <a href="#">Monthly Crates</a>
+                </ul>
+            </div>
+            <div id="contact">
+                <p id="main-txt">Contact</p>
+                <ul>
+                    <a href="#"><div class="flex-symbol">
+                        <img src="{% static 'home/images/symbol/location.svg' %}">
+                        <text>California</text>
+                    </div></a>
+                    <a href="#"><div class="flex-symbol">
+                        <img src="{% static 'home/images/symbol/email.svg' %}">
+                        <text>FriendlyFur@support.com</text>
+                    </div></a>
+                    <a href="#"><div class="flex-symbol">
+                        <img  src="{% static 'home/images/symbol/phone.svg' %}">
+                        <text>905-123-456</text>
+                    </div></a>
+                </ul>
+            </div>
+        </div>
+        <div id="info">
+            <a href="#">©Copyfright 2023</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Security</a>
+        </div>
+    </footer>
 </main>
 {% endblock %}
