@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        
+        #password-input-wrapper input {
+            display: inline-block;
+        }
+        .tooltip {
+        position: relative;
+        display: inline-block;
+        border-radius: 30%;
+        border: solid 1px #334;
+        text-align: center;
+        aspect-ratio : 1 / 1;
+        height: 1em;
+        }
+
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            opacity: 0;
+            white-space: nowrap;
+            width: auto;
+            padding: 10% 10% 10% 10%;
+            background-color: #334;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            top: -5px;
+            left: 200%;
+            transition: opacity 0.25s;
+        }
+
+        /* .tooltip .tooltip-text::after {
+        content: "";
+        position: absolute;
+        top: 15 px;
+        right: 100%;
+        margin-top: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent #334 transparent transparent;
+        } */
+        .tooltip:hover {
+            cursor: pointer;
+        }
+        .tooltip:hover .tooltip-text {
+            opacity: 1;
+            visibility: visible;
+        }
+
+
+        .tooltip .tooltip-text ol {
+            display: block;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+<div class="content-section">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Join Today</legend>
+            {% for field in form %}
+                <div class="form-group" id="{{field.name}}">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.name == 'password1' %}
+                    <div class="tooltip">i
+                        <span class="tooltip-text">
+                            Your Password Should
+                            <ol>
+                                <li>Be atleast 8 characters</li>
+                                <li>Have a symbol or/and a number</li>
+                                <li>Contain a uppercase and lowercase letter</li>
+                            </ol>
+                        </span>
+                    </div>
+                    {% endif %}
+                    {% if field.errors %}
+                    <div class="error">{{ field.errors }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </fieldset>
+        <div>
+            <button class="btn btn-outline-info" type="submit">Sign Up</button>
+        </div>
+    </form>
+    <div>
+        <small>
+            Already Have An Account? <a class="ml-2" href="{% url 'login'%}">Login</a>
+        </small>
+    </div>
+</div>
+</body>
+</html>

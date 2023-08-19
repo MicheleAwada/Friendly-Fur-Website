@@ -1,0 +1,15 @@
+header {
+    height: 11.25vh;
+    width: 100%;
+    background-color: #ebebeb;
+}
+
+body {margin: 0;}
+
+header>a>img {
+    box-sizing: border-box;
+    width: auto;
+    padding: 0.5% 1%;
+    height: 100%;
+
+}

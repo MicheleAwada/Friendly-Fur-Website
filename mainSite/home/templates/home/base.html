@@ -22,13 +22,51 @@
         <li><a href="#">About</a></li>
       </ul>
     </nav>
-    <nav><a class="link-nav-buttons link-login-button"><button>
-      Login 
-    </button></a>
-    <a class="link-nav-buttons"><button>
-      Subscribe 
-    </button></a></nav>
+    <nav><a href="{% url 'login' %}" class="link-nav-buttons link-login-button">Login</a>
+    <a href="{% url 'signup' %}" class="link-nav-buttons">Sign Up</a></nav>
   </header>
-  {% block body %} {% endblock %}
+  {% block body %}{% endblock %}
+  {% block footer %}
+  <footer>
+    <div id="main">
+        <div id="brand-info">
+            <img src="{% static 'home/images/footer logo.svg' %}" height="30%" width="auto"/>
+            <p class="brand-slogan">Puttin smiles on dogs faces</p>
+        </div>
+        <div id="browse">
+            <p id="main-txt">Browse</p>
+            <ul>
+                <a href="#">Home</a>
+                <a href="#">Shop</a>
+                <a href="#">Toys</a>
+                <a href="#">Treats</a>
+                <a href="#">Monthly Crates</a>
+            </ul>
+        </div>
+        <div id="contact">
+            <p id="main-txt">Contact</p>
+            <ul>
+                <a href="#"><div class="flex-symbol">
+                    <img src="{% static 'home/images/symbol/location.svg' %}">
+                    <text>California</text>
+                </div></a>
+                <a href="#"><div class="flex-symbol">
+                    <img src="{% static 'home/images/symbol/email.svg' %}">
+                    <text>FriendlyFur@support.com</text>
+                </div></a>
+                <a href="#"><div class="flex-symbol">
+                    <img  src="{% static 'home/images/symbol/phone.svg' %}">
+                    <text>905-123-456</text>
+                </div></a>
+            </ul>
+        </div>
+    </div>
+    <div id="info">
+        <a href="#">©Copyfright 2023</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Security</a>
+    </div>
+  </footer>
+  {% endblock %}
 </body>
 </html>

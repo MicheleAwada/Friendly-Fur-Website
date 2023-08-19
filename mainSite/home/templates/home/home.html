@@ -6,6 +6,13 @@
 {% endblock %}
 {% block body %}
 <main>
+    {% if messages %}
+        {% for message in messages %}
+            <div>
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
     <section style="position: relative;">
     <img class="screen-width-image" src="{% static 'home/images/Dog toy main home.png' %}"/>
     <p class="image-write" style="top:4%;left:3%;font-size: 3em;width: 30%;font-weight: 600;">Toys and Treats for Dogos</p>
@@ -91,45 +98,8 @@
         <p class="science-fact science-text"><span class="science-bold">Dog toys are a necessity for every pet parent. </span>Not only can they help keep your dog occupied, but they provide them with mental stimulation to prevent boredom and destructive behavior.</p>
         <p class="science-recommend science-text"><span class="science-bold">This is why we highly recommend our monthly subscription. </span>Where we deliver a customizable crate filled with new exciting toys and treats, each Month!</p>
     </section>
-    <footer>
-        <div id="main">
-            <div id="brand-info">
-                <img src="{% static 'home/images/footer logo.svg' %}" height="30%" width="auto"/>
-                <p class="brand-slogan">Puttin smiles on dogs faces</p>
-            </div>
-            <div id="browse">
-                <p id="main-txt">Browse</p>
-                <ul>
-                    <a href="#">Home</a>
-                    <a href="#">Shop</a>
-                    <a href="#">Toys</a>
-                    <a href="#">Treats</a>
-                    <a href="#">Monthly Crates</a>
-                </ul>
-            </div>
-            <div id="contact">
-                <p id="main-txt">Contact</p>
-                <ul>
-                    <a href="#"><div class="flex-symbol">
-                        <img src="{% static 'home/images/symbol/location.svg' %}">
-                        <text>California</text>
-                    </div></a>
-                    <a href="#"><div class="flex-symbol">
-                        <img src="{% static 'home/images/symbol/email.svg' %}">
-                        <text>FriendlyFur@support.com</text>
-                    </div></a>
-                    <a href="#"><div class="flex-symbol">
-                        <img  src="{% static 'home/images/symbol/phone.svg' %}">
-                        <text>905-123-456</text>
-                    </div></a>
-                </ul>
-            </div>
-        </div>
-        <div id="info">
-            <a href="#">©Copyfright 2023</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Security</a>
-        </div>
-    </footer>
 </main>
+{% endblock %}
+{% block footer %}
+{{block.super}}
 {% endblock %}

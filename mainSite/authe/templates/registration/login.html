@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div>
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset>
+            <legend> Log In</legend>
+            {{ form.as_p }}
+        </fieldset>
+        <div>
+            <button type="submit"> Login </button>
+            <a href="{% url 'password_reset' %}">Forgot Password?</a>
+        </div>
+    </form>
+    <div class="border-top py-3">
+        <small class="text-muted">
+            Don't Have a Account? <a class="ml-2" href="{% url 'signup  ' %}">Login</a>
+        </small>
+    </div>
+</div>

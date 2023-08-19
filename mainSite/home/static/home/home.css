@@ -5,11 +5,6 @@
     height: auto;
 }
 
-main {
-    position: relative;
-    top: 10vh;
-}
-
 .image-write {
     position: absolute;
     color: white;
@@ -145,76 +140,4 @@ main {
 }
 .science-recommend .science-bold {
     font-weight: 400;
-}
-
-footer {
-    background-color: #002c63;
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-flow: column nowrap;
-}
-
-footer #info {
-    background-color: #002c54;
-    margin-top: auto;
-    height: 2.5em;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-footer #info a{
-    text-decoration: none;
-    margin: 0 4%;
-    font-family: "Montserrat";
-}
-
-footer>#main {
-    display: flex;
-    height: 80%;
-    justify-content: space-around;
-    align-items: flex-start;
-    margin: 3% 0;
-}
-
-footer * {color:white;}
-
-.brand-slogan {
-    font-family: "MondayFeelings";
-}
-
-.flex-symbol {
-    display: flex;
-    flex-flow: row nowrap;
-    height: 1.5em;
-    align-items: center;
-    margin: 3% 0;
-}
-
-.flex-symbol img{
-    height: 100%;
-    width: auto;
-    margin: 0.25em;
-    display: inline;
-}
-.flex-symbol text {
-    font-size: 1.5em;
-    font-family: "Montserrat";
-}
-
-footer a {
-    text-decoration: none;
-}
-
-#main-txt {
-    font-size: 2em;
-    font-family: "Montserrat";
-    font-weight: 600;
-}
-
-#browse a{
-    display: block;
-    font-size: 1.5em;
-    font-family: "Montserrat";
 }
