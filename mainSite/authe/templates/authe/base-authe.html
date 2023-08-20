@@ -1,0 +1,36 @@
+{% extends 'authe/base.html' %}
+
+{% block content %}
+<p class="center big-text big-text-margin">{% block textmain %}{% endblock %}</p>
+{% block text %}{% endblock %}
+<form method="POST">
+    {% csrf_token %}
+    <fieldset>
+        {% for field in form %}
+            <div class="form-group" id="{{field.name}}">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                <br>
+                {{ field }}
+                {% if field.name == 'password1' %}
+                <!-- <div class="tooltip">i
+                    <span class="tooltip-text">
+                        Your Password Should
+                        <ol>
+                            <li>Be atleast 8 characters</li>
+                            <li>Have a symbol or/and a number</li>
+                            <li>Contain a uppercase and lowercase letter</li>
+                        </ol>
+                    </span>
+                </div> -->
+                {% endif %}
+                {% if field.errors %}
+                <div class="error">{{ field.errors }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </fieldset>
+    <button class="button-sumbit" type="submit" style="margin: 3% 0;">{% block textbutton %}{% endblock %}</button>
+</form>
+<p class="center" style="margin: 2.5% 0;">{% block texturl21 %}{% endblock %}<a class="link" href="{% block texturl22 %}{% endblock %}">{% block texturl23 %}{% endblock %}</a></p>
+<p class="center" style="margin: 2.5% 0;">{% block texturl1 %}{% endblock %}<a class="link" href="{% block texturl2 %}{% endblock %}">{% block texturl3 %}{% endblock %}</a></p>
+{% endblock %}

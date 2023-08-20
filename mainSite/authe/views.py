@@ -7,7 +7,7 @@ from django.contrib.auth import login, authenticate
 def signup(request):
     redirect_after = reverse('signup')
     if request.user.is_authenticated:
-        return render(request, "registration/confirmlogout.html", {'redirect': redirect_after})
+        return render(request, "authe/confirmlogout.html", {'redirect': redirect_after})
     if request.method=="POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
@@ -29,7 +29,8 @@ def signup(request):
                 messages.error('Something went wrong during authentication.')
     else:
         form = UserRegisterForm()
-    return render(request, "registration/signup.html", {'form': form})
+    form.fields['full_name'].label = "Full Name"
+    return render(request, "authe/signup.html", {'form': form})
 
 
 def account(request):
@@ -41,17 +42,19 @@ def account(request):
 
 
 class CustomLoginView(LoginView):
-    template_name = 'registration/login.html'  # Your regular login template
+    template_name = 'authe/login.html'  # Your regular login template
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             redirect_after = reverse('login')
-            return render(request, 'registration/confirmlogout.html', {'redirect': redirect_after})
+            return render(request, 'authe/confirmlogout.html', {'redirect': redirect_after})
+        
         return super().get(request, *args, **kwargs)
 
 class CustomLogoutView(LogoutView):
+    template_name = 'authe/logout.html'  # Your regular login template
 
-    def get(self,request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
-            return render(request, 'registration/notlogged.html')
+            return render(request, 'authe/notlogged.html')
         return super().get(request, *args, **kwargs)

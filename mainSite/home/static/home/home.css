@@ -38,7 +38,7 @@
     text-align: center;
     font-weight: 500;
     font-size: 2em;
-    margin: 24px;
+    margin: 6% 4%;
 }
 .product-offer-second-text {
     text-align: center;
@@ -53,7 +53,7 @@
 .rating-parent-container {
     background-color: #ffccff;
     width: 100%;
-    height: 70vmin;
+    height: 70vh;
     display: flex;
     flex-direction: column;
 }
@@ -103,7 +103,7 @@
 
 .science {
     background-color: #92e6e6;
-    height: 60vmin;
+    height: 60vh;
     width: 100%;
 }
 
@@ -140,4 +140,11 @@
 }
 .science-recommend .science-bold {
     font-weight: 400;
+}
+
+.messagecontainer {
+    position:absolute;
+    top:1%  ;
+    right:1%;
+    transform-origin: top left;
 }
