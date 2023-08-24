@@ -18,3 +18,8 @@ class UserRegisterForm(UserCreationForm):
             raise forms.ValidationError("Please enter a full name with at least two words.")
 
         return full_name
+
+class AllergyAutocompleteForm(forms.Form):
+    allergy = forms.CharField(max_length=1000, required=False)
+    name = forms.CharField(max_length=100, required=False)
+    breed = forms.CharField(max_length=100, required=False)

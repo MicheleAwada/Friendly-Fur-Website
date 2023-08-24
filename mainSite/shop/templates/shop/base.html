@@ -5,12 +5,17 @@
     <meta charset="UTF-8">
     <title>Friendly Fur</title>
     <link href="{% static 'shop/base.css' %}" rel="stylesheet"/>
+    <link rel="shortcut icon" href="{% static 'home/images/favicon.ico' %}" type="image/x-icon">
 </head>
 <body>
     <header>
         <a>
             <img src="{% static 'home/images/logo with text.svg' %}">
         </a>
+        <div class="search">
+            <input placeholder="Search">
+            <img src="{% static 'shop/images/search.svg' %}">
+        </div>
     </header>
 </body>
 </html>
