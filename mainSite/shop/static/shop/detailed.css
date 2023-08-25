@@ -1,0 +1,21 @@
+main-product-details {
+    overflow: hidden;
+    display: flex;
+    width: 100%;
+    height:auto;
+    flex-flow: row nowrap;
+}
+
+main-product-details>.image {
+    max-height: 553px;
+    max-width: 553px;
+}
+main-product-details>.image img{
+    max-height: 553px;
+    max-width: 553px;
+}
+
+main-product-details>.info {
+    overflow: scroll;
+    flex-grow:1;
+}

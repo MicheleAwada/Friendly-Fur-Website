@@ -114,6 +114,7 @@ main{
     height: auto;
     border: solid 2px #334;
     border-radius: 4vmin;
+    text-align:center;
 }
 
 

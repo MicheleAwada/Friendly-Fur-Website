@@ -1,10 +1,10 @@
 header {
     display:flex;
-    justify-content:space-evenly;
+    justify-content:space-between;
     align-items: center;
     height: 4.3vw;
     width: 100%;
-    background-color: #ebebeb;
+    background-color: #d9d9d9;
 }
 
 body {margin: 0;}
@@ -23,26 +23,27 @@ img {
 
 header>.search>input {
     height: auto;
-    font-size: 1.25em;
+    font-size: 100%;
+    width: 100%;
     flex-grow: 1;
-    border-radius: 2vmin 0 0 2vmin;
-    border: solid black 1.5px;
-    border-right: solid black 1px;
+    border: none;
     order: 0;
 }
 header>.search {
+    border: solid rgb(43, 43, 59) 0.3vmin;
     display: flex;
-    border-radius: 2vmin;
-    width:15em;
+    overflow:hidden;
+    border-radius: 5px;
+    width:20%;
     height: 75%;
     margin: 0 2%;
 }
 header>.search>img {
     box-sizing: border-box;
-    padding: 1.75%;
+    padding: 1.75% 1.75% 1.75% 3%;
     background-color: lightseagreen;
     height: 100%;
     width:auto;
     order: 1;
-    border-radius: 0 2vmin 2vmin 0;
+    cursor: pointer;
 }

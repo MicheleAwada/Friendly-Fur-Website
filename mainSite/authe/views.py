@@ -7,7 +7,7 @@ from django.contrib.auth import login, authenticate
 def signup(request):
     redirect_after = reverse('signup')
     if request.user.is_authenticated:
-        return render(request, "authe/confirmlogout.html", {'redirect': redirect_after})
+        return render(request, "authe/alreadylogged.html", {'redirect': redirect_after})
     if request.method=="POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
@@ -47,7 +47,7 @@ class CustomLoginView(LoginView):
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             redirect_after = reverse('login')
-            return render(request, 'authe/confirmlogout.html', {'redirect': redirect_after})
+            return render(request, 'authe/alreadylogged.html', {'redirect': redirect_after})
         
         return super().get(request, *args, **kwargs)
 

@@ -1,1 +1,17 @@
 {% extends 'shop/base.html' %}
+{% load static %}
+{% block head %}
+<link href="{% static 'shop/shop.css' %}" rel="stylesheet">
+{% endblock %}
+{% block main %}
+<section class="content-section">
+{% for product in products %}
+<div class="product-display">
+    <a href="{{ product.get_url }}">
+        <img src="{{product.images.first.image.url}}">
+        <p>{{product.title}} - {{product.price}}$</p>
+    </a>
+</div>
+{% endfor %}
+</section>
+{% endblock %}

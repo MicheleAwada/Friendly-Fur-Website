@@ -27,12 +27,16 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'paypal.com',
+    '127.0.0.1',
+]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'misc.apps.MiscConfig',
     'home.apps.HomeConfig',
     'authe.apps.AutheConfig',
     'shop.apps.ShopConfig',
@@ -52,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'misc.middleware.RestrictNormalToAdmin',
 ]
 
 ROOT_URLCONF = 'mainSite.urls'

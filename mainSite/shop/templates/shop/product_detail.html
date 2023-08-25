@@ -1,0 +1,17 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %} - {{product.title}}{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'shop/detailed.css' %}"
+{% endblock %}
+{% block main %}
+<section class="main-product-details">
+    <div class="image">
+        <img src="{{product.images.first.image.url}}">
+    </div>
+    <div class="info">
+        {{ product.title }}
+    </div>
+</section>
+
+{% endblock %}

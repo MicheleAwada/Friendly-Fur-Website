@@ -2,7 +2,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.db import models
 
 class PossibleAllergies(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.name
@@ -50,7 +50,7 @@ class CustomerUser(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
-    dog = models.OneToOneField(CustomerDog, on_delete=models.CASCADE, null=True, blank=True)
+    dog = models.OneToOneField(CustomerDog, on_delete=models.CASCADE, null=True, blank=True, related_name="dogs_user")
 
 
     def __str__(self):

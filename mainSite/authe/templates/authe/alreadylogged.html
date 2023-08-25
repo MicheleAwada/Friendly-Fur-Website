@@ -1,0 +1,13 @@
+{% extends 'authe/base.html' %}
+{% block title %}
+Already Logged In
+{% endblock %}
+{% block content %}
+  You're already logged in
+  <br>
+  {% if redirect %}
+  <a href="{% url 'logout' %}?next={{redirect}}">Logout?</a>
+  {% else %}
+  <a href="{% url 'logout' %}">Logout?</a>
+  {% endif %}
+{% endblock %}

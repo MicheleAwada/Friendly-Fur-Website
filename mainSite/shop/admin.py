@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Product, Colors, Sizes, AboutProduct
+from .models import Product, AboutProduct, ProductImages
 admin.site.register(Product)
-admin.site.register(Colors)
-admin.site.register(Sizes)
 admin.site.register(AboutProduct)
+admin.site.register(ProductImages)
