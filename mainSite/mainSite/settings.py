@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'authe.apps.AutheConfig',
     'shop.apps.ShopConfig',
+    'django.contrib.postgres',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -84,15 +85,24 @@ WSGI_APPLICATION = 'mainSite.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config("datab_name"),    # The name of the database you created
+        'USER': config("datab_user"),  # The username you created
+        'PASSWORD': config("datab_pass"),  # The password you set
+        'HOST': 'localhost',     # The database is on your computer
+        'PORT': '5432',          # PostgreSQL's default port
     }
 }
 
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
+
+# AUTHENTICATION_BACKENDS = (
+#     'social_core.backends.google.GoogleOAuth2',
+#     # Add other backends if needed
+# )
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -139,13 +149,13 @@ LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 
 #for sending emails
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
-EMAIL_HOST_USER = config('EMAIL')
-EMAIL_HOST_PASSWORD = config('PASSWORD')
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False
+# EMAIL_HOST_USER = config('EMAIL')
+# EMAIL_HOST_PASSWORD = config('PASSWORD')
 #end for sending emails
 
 AUTH_USER_MODEL = 'authe.CustomerUser'

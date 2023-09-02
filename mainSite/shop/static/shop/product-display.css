@@ -1,0 +1,86 @@
+section.content-section {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
+.product-display {
+  margin: 12px 0;
+  padding: 0 0 12px 0;
+  background-color: #f2f2f2;
+  border: 1px solid #333333;
+  overflow: hidden;
+  border-radius: 5px;
+  width: 256px;
+  height: auto;
+}
+.product-display .product-img {
+  width: 256px;
+  height: 256px;
+}
+.product-display .product-img a {
+  display: block;
+}
+.product-display .product-img a, .product-display .product-img a img {
+  width: 256px;
+  height: 256px;
+}
+.product-display .product-img a img {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.product-display .product-text {
+  box-sizing: border-box;
+  padding: 4px 14px;
+}
+.product-display .product-text .title a {
+  text-decoration: none;
+  color: #333333;
+}
+.product-display .product-text .title a p:hover {
+  color: #dea110;
+}
+.product-display .product-text .title a p {
+  margin: 12px 0;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+}
+.product-display .product-text .type a {
+  text-decoration: none;
+  color: #333333;
+}
+.product-display .product-text .type a p {
+  color: #ff6b6b;
+  margin: 8px 0 2px 0;
+  font-size: 1.25em;
+  font-weight: 700;
+}
+.product-display .product-text .product-info p {
+  margin: 0;
+}
+.product-display .product-text .product-info .product-price {
+  display: flex;
+  position: relative;
+}
+.product-display .product-text .product-info .product-price .currency {
+  position: relative;
+  top: 0.25em;
+  font-size: 0.75em;
+}
+.product-display .product-text .product-info .product-price .whole {
+  font-size: 2em;
+}
+.product-display .product-text .product-info .product-price .decimal {
+  position: relative;
+  font-size: 1em;
+  top: 0.33em;
+}
+.product-display .product-text .product-info .ship {
+  display: block;
+}/*# sourceMappingURL=product-display.css.map */

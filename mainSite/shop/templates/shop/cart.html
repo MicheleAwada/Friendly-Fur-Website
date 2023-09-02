@@ -1,0 +1,18 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'shop/product-display.css' %}">
+{% endblock %}
+
+{% block main %}
+
+{% if products %}
+{% include 'shop/product_display.html' %}
+{% else %}
+<section>
+    You dont have items in your cart
+</section>
+{% endif %}
+
+{% endblock %}

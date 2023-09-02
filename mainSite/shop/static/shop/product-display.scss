@@ -1,0 +1,204 @@
+@mixin product-width() {
+    $columns: floor(100vw/312px);
+
+}
+
+section.content-section {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: stretch;
+}
+$product-width: 256px;
+.product-display {
+    margin: 12px 0;
+    padding: 0 0 12px 0;
+    background-color: darken(white,5%);
+    border: 1px solid #333333;
+    overflow: hidden;
+    border-radius: 5px;
+    width: $product-width;
+    height: auto;
+    .product-img {
+        width: $product-width;
+        height: $product-width;
+        a {
+            display: block;
+            &, img {
+                width: $product-width;
+                height: $product-width;
+            }
+            img {
+                object-fit: contain;
+            }
+        }
+
+    }
+    .product-text {
+        box-sizing: border-box;
+        padding: 4px 14px;
+        .title {
+            a {
+                text-decoration: none;
+                color:#333333;
+                p:hover{
+                    color: darken(#f2c14e,16%);
+                }
+   
+                p {
+                    margin: 12px 0;
+                    font-size: 16px;
+                    line-height: 24px;
+                    font-weight: 500;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 4;
+                    overflow: hidden;
+                }
+            }
+        }
+        .type {
+            a {
+                text-decoration: none;
+                color:#333333;
+   
+                p {
+                    color: #ff6b6b;
+                    margin: 8px 0 2px 0;
+                    font-size: 1.25em;
+                    font-weight: 700;
+                }
+            }
+        }
+        .product-info {
+            p {
+                margin:0;
+            }
+            .product-price {
+                display: flex;
+                position: relative;
+                .currency {
+                    position: relative;
+                    top:0.25em;
+                    font-size: 0.75em;
+                }
+                .whole {    
+                    font-size: 2em;
+                }
+                .decimal {
+                    position: relative;
+                    font-size: 1em;
+                    top: 0.33em;
+                }
+            }
+            .ship {
+                display: block;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// .product-display {
+//     display: flex;
+//     flex-flow: column nowrap;
+//     justify-content: initial;
+
+//     background-color: white;
+//     width:230px;
+//     padding: 10px;
+//     overflow: hidden;
+//     border-radius: 10px;
+//     border:solid #334 1px;
+//     p {
+//         color: #0f1111;
+//         font-family: "Montserrat";
+//         margin: 0;
+//         padding: 3px 6px;
+//     }
+//     img {
+//         object-fit:contain;
+//         height:230px;
+//         width: 230px;
+//     }
+//     &>a {
+//         text-decoration: none;
+//         .title {
+//             font-size: 1.5em;
+
+//             font-size: 16px;
+//             line-height: 24px;
+//             overflow: hidden;
+//             display: -webkit-box;
+//             -webkit-box-orient: vertical;
+//             -webkit-line-clamp: 3; /* start showing ellipsis when 3rd line is reached */
+//             white-space: pre-wrap; /* let the text wrap preserving spaces */
+//             height: auto;
+//             max-height: 72px;
+//         }    
+//         cursor: pointer;
+//         &:hover .title, &:link:hover, &:visited:hover{
+//             color: #a86b29;
+//             text-decoration: none;
+//         }
+//         &:link, &:visited{
+//             .title {
+//                 color:#0f1111;
+//             }
+//         }
+//     }
+// }
+
+
+// .content-section{
+//     background-color: #f1f1f1;
+//     display: flex;
+//     flex-flow: row wrap;
+//     justify-content: space-evenly;
+//     align-items: stretch;
+//     // &>* {
+
+//     // }
+
+
+// }
+// .content-section>*{
+//     margin: 10px 5px;
+// }
+
+// .product-display p{
+//     color: #0f1111;
+//     font-family: "Montserrat";
+//     margin: 0;
+//     padding: 3px 6px;
+// }
+
+// .product-display {
+//     display: flex;
+//     flex-flow: column nowrap;
+//     justify-content: initial;
+
+// }
+
+// .product-display .space {
+//     flex-grow: 1;
+// }

@@ -1,0 +1,76 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'shop/product-display.css' %}">
+<link rel="stylesheet" href="{% static 'shop/search_results.css' %}">
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+{% endblock %}
+{% block main %}
+<div class="filter">
+    <button onclick="showbutton();">
+        <img src="{% static 'shop/images/filter-filled-tool-symbol.png' %}">
+        <p class="text">Filters</p>
+    </button>
+    <div id="info">
+        <!-- <span class="main">Filters</span> -->
+
+        <div class="filters">
+            <div class="price">
+                <label for="amount">Price range:</label>
+                <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            
+                <div id="slider-range"></div>
+            </div>
+        </div>
+        <button onclick="applyFilters();">
+            Apply Filters
+        </button>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script>
+var showFilter=true;
+function showbutton() {
+    showFilter = !showFilter;
+    if (showFilter) {
+        document.getElementById("info").style.display = "block";
+    }
+    else {
+        document.getElementById("info").style.display = "none";
+    }
+}
+showbutton();
+
+const max_price_slider = 501;
+$( function() {
+$( "#slider-range" ).slider({
+    range: true,
+    min: 0,
+    max: max_price_slider,
+    values: [ 0, 20 ],
+    slide: function( event, ui ) {
+        if ( max_price_slider === ui.values[ 1 ] ) {
+            $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + "∞" );
+        }
+        else {
+            $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+        }
+    }
+});
+$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+    " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+} ); 
+</script>
+{% if products %}
+{{products.count}} Search Results For "{{query}}"
+{% include 'shop/product_display.html' %}
+{% else %}
+<section>
+    Sorry We Found no results
+</section>
+{% endif %}
+
+{% endblock %}

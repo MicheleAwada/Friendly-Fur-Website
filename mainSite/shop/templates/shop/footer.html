@@ -1,0 +1,118 @@
+<style>
+footer {
+    background-color: hsl(213, 100%, 19%);
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+footer #info {
+    background-color: #002c54;
+    margin-top: auto;
+    height: 2.5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer #info a{
+    text-decoration: none;
+    margin: 0 4%;
+    font-family: "Montserrat";
+}
+
+footer>#main {
+    display: flex;
+    height: 80%;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin: 3% 0;
+}
+
+footer * {color:white;}
+
+.brand-slogan {
+    font-family: "MondayFeelings";
+}
+
+.flex-symbol {
+    display: flex;
+    flex-flow: row nowrap;
+    height: 1.5em;
+    align-items: center;
+    margin: 3% 0;
+}
+
+.flex-symbol img{
+    height: 100%;
+    width: auto;
+    margin: 0.25em;
+    display: inline;
+}
+.flex-symbol text {
+    font-size: 1.5em;
+    font-family: "Montserrat";
+}
+
+footer a {
+    text-decoration: none;
+}
+
+#main-txt {
+    font-size: 2em;
+    font-family: "Montserrat";
+    font-weight: 600;
+}
+
+#browse a{
+    display: block;
+    font-size: 1.5em;
+    font-family: "Montserrat";
+}
+
+footer ul{
+    margin-bottom: 0;
+    padding-left: 0;
+}
+</style>
+<footer>
+    <div id="main">
+        <div id="brand-info">
+            <img src="{% static 'home/images/footer logo.svg' %}" height="30%" width="auto"/>
+            <p class="brand-slogan">Puttin smiles on dogs faces</p>
+        </div>
+        <div id="browse">
+            <p id="main-txt">Browse</p>
+            <ul>
+                <a href="#">Home</a>
+                <a href="#">Shop</a>
+                <a href="#">Toys</a>
+                <a href="#">Treats</a>
+                <a href="#">Monthly Crates</a>
+            </ul>
+        </div>
+        <div id="contact">
+            <p id="main-txt">Contact</p>
+            <ul>
+                <a href="#"><div class="flex-symbol">
+                    <img src="{% static 'home/images/symbol/location.svg' %}">
+                    <text>California</text>
+                </div></a>
+                <a href="#"><div class="flex-symbol">
+                    <img src="{% static 'home/images/symbol/email.svg' %}">
+                    <text>FriendlyFur@support.com</text>
+                </div></a>
+                <a href="#"><div class="flex-symbol">
+                    <img  src="{% static 'home/images/symbol/phone.svg' %}">
+                    <text>905-123-456</text>
+                </div></a>
+            </ul>
+        </div>
+    </div>
+    <div id="info">
+        <a href="#">©Copyfright 2023</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Security</a>
+    </div>
+</footer>

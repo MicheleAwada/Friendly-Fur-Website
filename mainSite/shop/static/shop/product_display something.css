@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+.product-display img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  height: 230px;
+  width: 230px;
+}
+
+.product-display {
+  background-color: white;
+  width: 230px;
+  padding: 10px;
+  overflow: hidden;
+  border-radius: 10px;
+  border: solid #334 1px;
+}
+
+.product-display > a {
+  cursor: pointer;
+}
+
+.product-display > a:link {
+  text-decoration: none;
+}
+
+.product-display > a:link:hover .title {
+  /* color: #4d79ff; */
+  text-decoration: underline;
+}
+
+.product-display > a:link .title {
+  color: #668cff;
+  text-decoration: none;
+}
+
+.product-display > a:visited:hover .title {
+  text-decoration: underline;
+}
+
+.product-display > a:visited .title {
+  color: #cc33ff;
+  text-decoration: none;
+}
+
+.title {
+  font-size: 16px;
+  line-height: 24px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; /* start showing ellipsis when 3rd line is reached */
+  white-space: pre-wrap; /* let the text wrap preserving spaces */
+  height: auto;
+  max-height: 72px;
+}
+
+.content-section {
+  background-color: #f1f1f1;
+  padding: 10px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: stretch;
+}
+
+.content-section > * {
+  margin: 10px 5px;
+}
+
+.product-display p {
+  color: #0f1111;
+  font-family: "Montserrat";
+  margin: 0;
+  padding: 0;
+}
+
+.product-display p {
+  padding: 5px 6px;
+  margin: 0;
+}
+
+.product-display {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: initial;
+}
+
+.product-display .space {
+  flex-grow: 1;
+}/*# sourceMappingURL=product_display.css.map */

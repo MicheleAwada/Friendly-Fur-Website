@@ -1,0 +1,52 @@
+@import 'colors';
+
+.product_added_to_cart {
+    background-color: $light;
+    margin: 8px 16px;
+    padding: 8px 16px;
+    border: 1px $slate solid;
+    border-radius: 8px;
+    height: 128px+64px;
+    width: 600px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    
+    >* {
+        margin: 0 8px;
+    }
+
+    .main {
+        display: flex;
+        align-items: center;
+        font-size: 1.5em;
+        img {
+            margin-left: 8px;
+            height: 1em;
+            width: auto;
+        }
+    }
+
+    .product-info {
+        display: flex;
+        flex-flow: column;
+
+        img {
+            height: auto;
+            max-height: 128px;
+            width: auto;
+            max-width: 128px;
+            object-fit:contain;
+        }
+        p {
+            margin: 0;
+            margin-top: 4px;
+            width: 128px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            overflow: hidden;
+        }
+    }
+}

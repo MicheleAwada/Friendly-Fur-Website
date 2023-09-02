@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
-
+from shop.models import Product
 class PossibleAllergies(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
@@ -37,6 +37,11 @@ class CustomerUserManager(BaseUserManager):
 
         return self.create_user(email, first_name, last_name, password, **extra_fields)
 
+
+class CustomerCart(models.Model):
+    # save_for_later = models.BooleanField(default=False)
+    quantity = models.PositiveIntegerField()
+    product = models.ForeignKey("shop.Product", related_name="in_carts", verbose_name="Users Cart", on_delete=models.CASCADE)
 class CustomerUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=30)
@@ -50,6 +55,7 @@ class CustomerUser(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
+    user_cart = models.ManyToManyField(CustomerCart, related_name="all_carts_inside",verbose_name="Users Cart",blank=True)
     dog = models.OneToOneField(CustomerDog, on_delete=models.CASCADE, null=True, blank=True, related_name="dogs_user")
 
 

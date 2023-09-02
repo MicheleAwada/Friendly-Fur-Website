@@ -2,16 +2,127 @@
 {% load static %}
 {% block title %} - {{product.title}}{% endblock %}
 {% block head %}
-<link rel="stylesheet" href="{% static 'shop/detailed.css' %}"
+<link rel="stylesheet" href="{% static 'shop/detailed.css' %}">
 {% endblock %}
+
 {% block main %}
-<section class="main-product-details">
-    <div class="image">
-        <img src="{{product.images.first.image.url}}">
-    </div>
-    <div class="info">
-        {{ product.title }}
+<section class="all-product-details">
+    <section class="main-product-details">
+        <div class="image">
+            <div class="image-select-all">
+                {% for image_model in product.images.all %}
+                <div class="image-select" id="imageselector{{forloop.counter}}" onclick="changeImage( '{{image_model.image.url}}', {{forloop.counter}} )">
+                    <img class="image-select-image" src="{{image_model.image.url}}">
+                </div>
+                {% endfor %}
+            </div>
+            <div class="image-main-div">
+                <img id="image-main" src="{{product.images.first.image.url}}">
+            </div>
+        </div>
+        <div class="info">
+            <p class="title">{{ product.title }}</p>
+            <div class="brand"><a href="{% url 'brand' slug=product.brand.slug %}">By: {{ product.brand.name }}</a></div>
+            <div class="desc">{{product.description|linebreaks}}</div>
+            {% if product.product_ingredients.all %}
+            <div class="ingredients">
+                <p>Ingrediants ({{ product.product_ingredients.count }}):</p>
+                <ul>
+                {% for ingredient in product.product_ingredients.all %}
+                <li {% if forloop.counter > 3 %}class="dont-show"{% endif %}>
+                    <p>- {{ ingredient.name }}</p>
+                </li>
+                {% endfor %}
+                </ul>
+                {% endif %}
+                {% if product.product_ingredients.count > 3 %}
+                <button id="showmoreingredients">
+                    <p>See More</p>
+                </button>
+            </div>
+            {% endif %}
+            {% if product.about_product %}
+            <div class="about">
+                <p class="main">
+                    About Product:
+                </p>
+                <ul class="rest">
+                    <li>
+                        {% if product.about_product.weight %}
+                        - Weight: {{ product.about_product.weight }}g
+                        {% endif %}
+                    </li>
+                </ul>
+                <p class="dimension">
+                    {% if product.about_product.dimension %}
+                    - Dimension:
+                    {% for each_dimension in product.about_product.dimension %}
+                        <br>
+                        {{ each_dimension }}cm
+                    {% endfor %}
+                    {% endif %}
+                </p>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+    <div class="transaction">
+        <div class="product-price">
+            <div>
+                <span class="currency">$</span>
+            </div>
+            <div>
+                <span class="whole">{{product.price_whole}}</span>
+            </div>
+            <div>
+                <span class="decimal">{{product.price_decimal}}</span>
+            </div>
+        </div>
+        <button id="addtocart">
+            <a href="{% url 'add_to_cart' slug=product.slug %}">Add To Cart</a>
+        </button>
     </div>
 </section>
+
+<script>
+    let show_more = document.getElementById("showmoreingredients");
+    let show_more_txt = document.querySelector("#showmoreingredients p");
+    let showed_more = false
+    function showmore_function() {
+        let ingredients = document.querySelectorAll("li.dont-show");
+        showed_more = !showed_more
+        if (showed_more) {
+            show_more_txt.innerHTML = "See Less"
+        }
+        else {
+            show_more_txt.innerHTML = "See More"
+        }
+        ingredients.forEach(ingredient => {        
+                if (showed_more) {
+                    ingredient.style.display = "initial";
+                }
+                else {
+                    ingredient.style.display = "none";
+                }
+            }
+        );
+    }
+    show_more.onclick = showmore_function;
+
+    var image = document.getElementById("image-main");
+    function changeImage(url, id) {
+        let elements = document.querySelectorAll(".image-select-image");
+        elements.forEach(element => {
+        element.style.borderColor = "#333333";
+        element.style.borderWidth = "1px";
+        });
+        console.log(id)
+        var image_select = document.querySelector("#imageselector"+id+" img");
+        console.log(image_select)
+        image_select.style.borderColor = "#3A86FF"
+        image_select.style.borderWidth = "3px";
+        image.src = url;
+    }
+</script>
 
 {% endblock %}

@@ -1,0 +1,13 @@
+<section class="content-section">
+    {% for product in products %}
+    <div class="product-display">
+        <a href="{% url 'product-detail' slug=product.slug %}">
+            <img src="{{product.images.first.image.url}}">
+            <p class="title">{{product.title}}</p>
+        </a>
+        <p>${{product.price}} - {{product.shipping_cost}} Shipping</p>
+        <div class="space"></div>
+        <button class="buycart">Add To Cart</button>
+    </div>
+    {% endfor %}
+</section>

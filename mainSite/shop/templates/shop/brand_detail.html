@@ -1,0 +1,21 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'shop/product-display.css' %}">
+{% endblock %}
+
+{% block main %}
+
+<p>{{brand.name}}</p>
+<p>{{brand.description|linebreaks}}</p>
+
+{% if products %}
+{% include 'shop/product_display.html' %}
+{% else %}
+<section>
+    Sorry We Found no results
+</section>
+{% endif %}
+
+{% endblock %}
