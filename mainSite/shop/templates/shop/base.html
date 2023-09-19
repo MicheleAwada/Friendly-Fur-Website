@@ -1,59 +1,77 @@
-{% extends 'shop/topbase.html' %}
+{% extends 'shop/master.html' %}
 {% load static %}
-{% block topbasehead %}
+{% block head %}
     <meta charset="UTF-8">
     <title>Friendly Fur{% block title %}{% endblock %}</title>
-    <link href="{% static 'shop/base.css' %}" rel="stylesheet"/>
-    <link rel="shortcut icon" href="{% static 'shop/images/favicon.ico' %}" type="image/x-icon">
+
     <style>
         @font-face {
             font-family: "MondayFeelings";
             src: url({% static 'home/font/MondayFeelings.ttf' %}) format("truetype");
         }
     </style>
+    <script src="{% static 'shop/base.js' %}" defer></script>
     <script>
-        function search() {
-            if (search_input.value) {
-                window.location.href = "{% url 'search' %}" + "?q=" + (search_input.value);
-            }
-        
-        }
-        function applyFilters() {
-            $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-            " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-            final_list = [];
-            final_list.push($( "#slider-range" ).slider( "values", 0 ));
-            if ($( "#slider-range" ).slider( "values", 1 ) >= max_price_slider) {
-                final_list.push(-1)
-            }
-            else {
-                final_list.push($( "#slider-range" ).slider( "values", 1 ));
-            }
-        
-            final = final_list.join(",")
-        
-            window.location.href = "{% url 'search' %}" + "?f=" + final;
-        }
+        const search_url = {% url 'search' %};
     </script>
-    {% block head %}{% endblock %}
-{% endblock %}
-{% block topbasebody %}
-<body>
+{% endblock head %}
+{% block body %}
     <header>
-        <a href="{% url 'shop' %}">
-            <img src="{% static 'shop/images/logo.svg' %}">
-        </a>
-        <form action="{% url 'search' %}" id="search" method="GET" onsubmit="return validateSearch()">
-            <input id="search_input" name="q" placeholder="Search" autocomplete="on">
-            <button  type="submit" aria-label="Search">
-                <img  src="{% static 'shop/images/search.svg' %}">
-            </button>
-        </form>
+        <div class="first">
+            <a href="{% url 'shop' %}">
+                <img src="{% static 'shop/images/logo.svg' %}">
+            </a>
+        </div>
+        <div class="search_div">
+            <form action="{% url 'search' %}" id="search" method="GET" onsubmit="return validateSearch()">
+                <input id="search_input" name="q" placeholder="Search" autocomplete="on" value='{% if query %}{{query}}{% endif %}'>
+                <button  type="submit" aria-label="Search">
+                    <img  src="{% static 'shop/images/search.svg' %}">
+                </button>
+            </form>
+        </div>
+        <nav>
+            <a href="{% url 'cart' %}">
+                <div id="cart">
+                    <img src="{% static 'shop/images/cart-icon.svg' %}">
+                    <span>
+                        {% if request.user.is_authenticated %}
+                        {{request.user.user_cart.count}}
+                        {% else %}
+                        
+                        {% endif %}
+                    </span>
+                </div>
+            </a>
+            <div id="account">
+                {% if request.user.is_authenticated %}
+                    <button onclick="account_info_show();">
+                        <img src="{% static 'shop/images/account-icon.svg' %}">
+                    </button>
+                {% else %}
+                    <a href="{% url 'login' %}">
+                        <img src="{% static 'shop/images/account-icon.svg' %}">
+                    </a>
+                {% endif %}
+                <div class="info" id="accountinfo">
+                    {% if request.user.is_authenticated %}
+                    <p>Hello, {{request.user.first_name}}</p>
+                    <ul>
+                        <li><a href="{% url 'account-detail' %}">Account</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Orders</a></li>
+                        <li><a href="#">Tracking</a></li>
+                        <li><a href="#">Payment methods</a></li>
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
     </header>
     <main>
+    {% include 'shop/messages.html' %}
     {% block main %}
     {% endblock %}
     </main>
-</body>
 <script src="{% static 'shop/base.js' %}"></script>
 {% endblock %}

@@ -1,0 +1,88 @@
+.email_div {
+  background-color: #eff9fc;
+  display: flex;
+  border: #37474F 1px solid;
+  border-radius: 4px;
+  overflow: visible;
+  position: relative;
+}
+.email_div input {
+  outline: none;
+  border-radius: 4px 0 0 4px;
+  border: none;
+  background-color: #eff9fc;
+}
+.email_div .validemail {
+  cursor: pointer;
+  border-radius: 4px 0 0 4px;
+  position: relative;
+  background-color: #a8dbed;
+}
+.email_div .validemail:hover .info {
+  display: inline;
+}
+.email_div .validemail .info {
+  z-index: 1000;
+  display: inline;
+  position: absolute;
+  overflow: visible;
+  left: 100px;
+  background-color: #F5F5F5;
+  border: #41555e 1px solid;
+  color: #37474F;
+}
+.email_div .validemail .info p {
+  overflow: visible;
+}
+.email_div .validemail img, .email_div .validemail {
+  height: 2em;
+  width: 2em;
+  aspect-ratio: 1/1;
+}
+.email_div .validemail span {
+  font-size: 1.9em;
+  color: white;
+}
+
+.visible {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.invisible {
+  display: none;
+}
+
+.spinner {
+  animation: rotate 2s linear infinite;
+  z-index: 2;
+  position: absolute;
+  width: 75%;
+  height: 75%;
+}
+.spinner .path {
+  stroke: white;
+  stroke-linecap: round;
+  animation: dash 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}/*# sourceMappingURL=email_val.css.map */

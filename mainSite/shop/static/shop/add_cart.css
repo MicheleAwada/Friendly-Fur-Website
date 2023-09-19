@@ -43,4 +43,8 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
+}
+.product_added_to_cart .product-info .allergy {
+  display: flex;
+  gap: 4px;
 }/*# sourceMappingURL=add_cart.css.map */

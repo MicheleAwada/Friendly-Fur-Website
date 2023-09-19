@@ -71,8 +71,8 @@ class Product(models.Model):
     ship_price = models.DecimalField("Shipping Cost", max_digits=10, decimal_places=2, validators=[validate_positve], default=0)
     quantity = models.PositiveIntegerField("Quantity Available")
 
-    #images = ArrayField(models.ImageField(upload_to='product/images/',height_field="height",width_field='width'), name="image", size=8, null=True)
-    search_vector = SearchVectorField(null=True, editable=False)
+
+    # search_vector = SearchVectorField(null=True, editable=False)
 
     brand = models.ForeignKey(Brand, null=True, related_name="brand_prodcuts", verbose_name="Product's brand", on_delete=models.CASCADE)
     about_product = models.OneToOneField(AboutProduct,on_delete=models.SET_NULL, null=True, blank=True)
@@ -82,6 +82,9 @@ class Product(models.Model):
 
     uuid = models.UUIDField(default=uuid.uuid4, editable=False)
 
+
+    def class_shipping_free(self):
+        return " freeship" if self.ship_price==0 else "";
     def price_whole(self):
         return int(self.price//1)
     def price_decimal(self):
@@ -89,12 +92,23 @@ class Product(models.Model):
     def shipping_cost(self):
         return (f"${self.ship_price}" if self.ship_price!=0 else "Free")+" Shipping"
     def in_stock(self):
-        return self.quantity!=0
+        if self.quantity>0:
+            return "In Stock"
+        else:
+            return "Out of Stock"
+    def in_stock_class(self):
+        if self.quantity>0:
+            return "stock"
+        else:
+            return "notstock"
     def __str__(self):
         return self.title
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.title)  # Use slugify from django.utils.text
+            try:
+                self.slug = slugify(self.title)  # Use slugify from django.utils.text
+            except:
+                raise ValidationError("slug is already taken")
         super().save(*args, **kwargs)
 
 class ProductImages(models.Model):

@@ -8,6 +8,7 @@ class CustomPasswordValidator(BaseValidator):
         self.special_chars = special_chars
 
     def validate(self, password, user=None):
+        print("hi")
         all_errors = []#instead of saying 1 error message at the same time this method does it all at once
         #instead of saying 1 error message at the same time this method does it all at once
         if len(password) < self.min_length:
@@ -23,7 +24,7 @@ class CustomPasswordValidator(BaseValidator):
             #     params={'min_length': self.min_length},
             # )
 
-        if not any(char.islower() for char in password):
+        if not any(not char.isalpha() for char in password):
             all_errors.append(
             ValidationError(
                 gettext("The password must contain at least %(special_chars)d number or special character."),

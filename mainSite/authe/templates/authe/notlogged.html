@@ -1,10 +1,10 @@
-{% extends 'authe/base.html' %}
+{% extends 'authe/authe-base.html' %}
 {% block title %}
 Log Out
 {% endblock %}
 
 {% block content %}
-<p class="center big-text big-text-padding">Cannot logout, since your aren't logged in.</p>
+<p class="center big-text big-text-padding">Cannot logout, since you aren't logged in.</p>
 
 <p class="center normal-text-padding" style="font-size: 1.33em;"><a href="{% url 'login' %}" class="link">Login</a>
 or

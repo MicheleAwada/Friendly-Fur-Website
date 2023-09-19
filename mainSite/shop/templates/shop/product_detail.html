@@ -23,14 +23,77 @@
         <div class="info">
             <p class="title">{{ product.title }}</p>
             <div class="brand"><a href="{% url 'brand' slug=product.brand.slug %}">By: {{ product.brand.name }}</a></div>
+            <p class="type mb-3">{{ product.get_type_code_display }}</p>
+            <hr>
             <div class="desc">{{product.description|linebreaks}}</div>
-            {% if product.product_ingredients.all %}
+        </div>
+    </section>
+    <section class="right">
+        <div class="transaction">
+            <div class="all_price">
+                <div class="product-price">
+                    <div>
+                        <span class="currency">$</span>
+                    </div>
+                    <div>
+                        <span class="whole">{{product.price_whole}}</span>
+                    </div>
+                    <div>
+                        <span class="decimal">{{product.price_decimal}}</span>
+                    </div>
+                </div>
+                <div class="shipping{{product.class_shipping_free}}">
+                    <p>{{product.shipping_cost}}</p>
+                </div>
+            </div>
+            <!-- <form method="POST">
+                {% csrf_token %}
+                <button id="addtocart" type="sumbit">
+                    Add To Cart
+                </button>
+            </form> -->
+            <div class="product-availibility">
+                <div class="stock">
+                    <p class="{{product.in_stock_class}}">
+                        {{product.in_stock}}
+                    </p>
+                </div>
+                {% if allergic_dogs %}
+                <button id="allergywarn" type="button" style="background-color: transparent; border:none; padding:0;" data-toggle="tooltip" data-placement="bottom" title="{{allergic_dogs}}">
+                    <img src="{% static 'shop/images/allergywarn.png' %}" style="height: 1.5em;">
+                </button>
+                <p style="font-size: 100%; height: 1.5em; margin: 0; padding: 0; display: inline-block; color:red;  "> Allergies!</p>
+                {% endif %}
+            </div>
+            <form method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group" id="{{field.name}}">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                        <div class="error">{{ field.errors }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <button id="addtocart" type="sumbit">
+                    Add To Cart
+                </button>
+            </form>
+        </div>
+        {% if product.product_ingredients.all %}
             <div class="ingredients">
                 <p>Ingrediants ({{ product.product_ingredients.count }}):</p>
                 <ul>
-                {% for ingredient in product.product_ingredients.all %}
-                <li {% if forloop.counter > 3 %}class="dont-show"{% endif %}>
+                {% for ingredient in ingredients %}
+                <li class="{% if forloop.counter > 3 %}dont-show {% endif %}{% if ingredient.dog_name %}allergy{% endif %}">
                     <p>- {{ ingredient.name }}</p>
+                    {% if ingredient.dog_name %}
+                        <button id="allergywarn" type="button" style="background-color: transparent; border:none; padding:0;" data-toggle="tooltip" data-placement="right" title="Allergic to {{ingredient.more_than_one_dog_s}} {{ingredient.dog_name}}">
+                            <img src="{% static 'shop/images/allergywarn.png' %}" style="height: 1.5em;">
+                        </button>
+                    {% endif %}
+                    
                 </li>
                 {% endfor %}
                 </ul>
@@ -64,26 +127,9 @@
                 </p>
             </div>
             {% endif %}
-        </div>
     </section>
-    <div class="transaction">
-        <div class="product-price">
-            <div>
-                <span class="currency">$</span>
-            </div>
-            <div>
-                <span class="whole">{{product.price_whole}}</span>
-            </div>
-            <div>
-                <span class="decimal">{{product.price_decimal}}</span>
-            </div>
-        </div>
-        <button id="addtocart">
-            <a href="{% url 'add_to_cart' slug=product.slug %}">Add To Cart</a>
-        </button>
-    </div>
 </section>
-
+{% if product.product_ingredients.all %}
 <script>
     let show_more = document.getElementById("showmoreingredients");
     let show_more_txt = document.querySelector("#showmoreingredients p");
@@ -99,7 +145,7 @@
         }
         ingredients.forEach(ingredient => {        
                 if (showed_more) {
-                    ingredient.style.display = "initial";
+                    ingredient.style.display = "flex";
                 }
                 else {
                     ingredient.style.display = "none";
@@ -108,21 +154,46 @@
         );
     }
     show_more.onclick = showmore_function;
-
-    var image = document.getElementById("image-main");
-    function changeImage(url, id) {
-        let elements = document.querySelectorAll(".image-select-image");
-        elements.forEach(element => {
-        element.style.borderColor = "#333333";
-        element.style.borderWidth = "1px";
-        });
-        console.log(id)
-        var image_select = document.querySelector("#imageselector"+id+" img");
-        console.log(image_select)
-        image_select.style.borderColor = "#3A86FF"
-        image_select.style.borderWidth = "3px";
-        image.src = url;
-    }
 </script>
+{% endif %}
+<script>
+var image = document.getElementById("image-main");
+function changeImage(url, id) {
+    let elements = document.querySelectorAll(".image-select-image");
+    elements.forEach(element => {
+    element.style.borderColor = "#333333";
+    element.style.borderWidth = "1px";
+    });
+    console.log(id)
+    var image_select = document.querySelector("#imageselector"+id+" img");
+    console.log(image_select)
+    image_select.style.borderColor = "#3A86FF"
+    image_select.style.borderWidth = "3px";
+    image.src = url;
+}
+</script>
+<!-- <script>
+let productpk = {{product.pk}};
+let producturl = "{% url 'product' slug=product.slug %}";
+$("#addtocart").click(function(e) {
+    e.preventDefault(); 
+    $.ajax({
+    url: producturl,
+    type: "POST",
+    dataType: "json",
+    data: JSON.stringify({productpk: productpk,}),
+    headers: {
+        "X-Requested-With": "XMLHttpRequest",
+        "X-CSRFToken": getCookie("csrftoken"),  // don't forget to include the 'getCookie' function
+    },
+    success: (data) => {
+        console.log(data);
+    },
+    error: (error) => {
+        console.log(error);
+    }
+    });
+});
+</script> -->
 
 {% endblock %}

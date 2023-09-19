@@ -1,0 +1,9 @@
+@import "colors";
+@import "bootstrap/bootstrap";
+.btn-primary- {
+    @include button-variant($orange, darken($orange,7.5%), white, darken($orange,7%), darken($orange,1%), white);
+}
+
+.btn-outline-primary- {
+    @include button-outline-variant($orange, #ff0000, lighten($orange,5%), $orange);
+}

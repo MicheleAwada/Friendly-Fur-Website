@@ -1,0 +1,14 @@
+{% load static %}
+
+{% if messages %}
+{% for message in messages %}
+<div>
+    {% if message.tags == 'success' %}
+        <img src="{% static 'shop/images/congrats.svg' %}" style="position:relative; height:56px;padding:0 40px 0 0;float:right;z-index:100;">
+    {% endif %}
+    <div role=alert class="alert {% if message.tags == 'error' %} alert-danger{% elif message.tags == 'success' %} alert-success{% elif message.tags == 'warning' %}  alert-warning{% else %} alert-info{% endif %}">
+        {{message}}
+    </div>   
+</div>
+{% endfor %}
+{% endif %}

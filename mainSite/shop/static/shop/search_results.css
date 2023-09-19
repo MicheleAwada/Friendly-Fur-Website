@@ -1,8 +1,14 @@
-.filter {
+.top > p {
+  display: inline;
+  font-size: 1.5em;
+  padding-left: 0.75em;
+}
+.top .filter {
   position: relative;
+  display: inline;
   float: right;
 }
-.filter button {
+.top .filter button {
   border: none;
   cursor: pointer;
   display: inline-flex;
@@ -12,15 +18,15 @@
   border-radius: 5px;
   background-color: #00695C;
 }
-.filter button img {
+.top .filter button img {
   height: 1em;
 }
-.filter button p {
+.top .filter button p {
   color: white;
   margin: 0;
   padding-left: 8px;
 }
-.filter #info {
+.top .filter #info {
   box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.2);
   position: absolute;
   top: 2em;
@@ -30,10 +36,10 @@
   border-radius: 8px;
   padding: 8px;
 }
-.filter #info .main {
+.top .filter #info .main {
   font-weight: 700;
 }
-.filter #info button {
+.top .filter #info button {
   margin: 5px auto;
   color: white;
   background-color: #FF6F00;

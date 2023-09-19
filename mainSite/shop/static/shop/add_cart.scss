@@ -48,5 +48,9 @@
             -webkit-line-clamp: 1;
             overflow: hidden;
         }
+        .allergy {
+            display: flex;
+            gap:4px;
+        }
     }
 }

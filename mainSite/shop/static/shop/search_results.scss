@@ -1,51 +1,59 @@
 @import 'colors';
 
-.filter{
-    position: relative;
-    float: right;
-    button {
-        border: none;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        padding: 3px 6px;
-        margin: 3px 6px;
-        border-radius: 5px;
-        background-color: $teal;
-        img {
-            height: 1em;
-        }
-        p {
-            color: white;
-            margin: 0;
-            padding-left: 8px;
-        }
+.top {
+    >p {
+        display: inline;
+        font-size: 1.5em;
+        padding-left: 0.75em;
     }
-    #info {
-        box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.2);
-        position: absolute;
-        top: 2em;
-        right: 0.2em;
-        display: none;
-        background-color: $light;
-        border-radius: 8px;
-        padding: 8px;
-
-
-
-        .main {
-            font-weight: 700;
-        }
-        .filters {
-            .price {
-                label {
-                }
+    .filter{
+        position: relative;
+        display: inline;
+        float: right;
+        button {
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 6px;
+            margin: 3px 6px;
+            border-radius: 5px;
+            background-color: $teal;
+            img {
+                height: 1em;
+            }
+            p {
+                color: white;
+                margin: 0;
+                padding-left: 8px;
             }
         }
-        button {
-            margin: 5px auto;
-            color: white;
-            background-color: $orange;
+        #info {
+            box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.2);
+            position: absolute;
+            top: 2em;
+            right: 0.2em;
+            display: none;
+            background-color: $light;
+            border-radius: 8px;
+            padding: 8px;
+
+
+
+            .main {
+                font-weight: 700;
+            }
+            .filters {
+                .price {
+                    label {
+                    }
+                }
+            }
+            button {
+                margin: 5px auto;
+                color: white;
+                background-color: $orange;
+            }
         }
     }
 }

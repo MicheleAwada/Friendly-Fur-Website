@@ -1,0 +1,41 @@
+{% extends 'shop/topbase.html' %}
+{% load static %}
+
+{% block topbasehead %} 
+  <title>Friendly Fur - {% block title %}{% endblock %}</title>
+  <link href="{% static 'authe/base.css' %}" rel="stylesheet">
+  <link rel="shortcut icon" href="{% static 'shop/images/favicon.ico' %}" type="image/x-icon">
+  {% block head %}{% endblock %}
+{%  endblock %}
+    
+
+  <!-- <header>
+    <a href="{% url 'home' %}">
+      <img id="logoImage"  src="{% static 'home/images/default logo.svg' %}" alt="logo"/>
+    </a>
+    <nav>
+      <ul class="nav__links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Shop</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </nav>
+    </header> -->
+{% block topbasebody %}
+<main>
+  <section class="all-content-section">
+    {% include 'shop/messages.html' %}
+    <section class="content-section">
+      {% block content %}
+      <form method="POST">
+        verify Beryfy
+        {% csrf_token %}
+        {{form}}
+        <button type="sumbit" name="action" value="False">Sumbit</button>
+        <button type="sumbit" name="action" value="True">Get another</button>
+      </form>
+      {% endblock %}
+    </section>
+  </section>
+</main>
+{% endblock %}

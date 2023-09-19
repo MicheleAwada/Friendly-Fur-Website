@@ -10,10 +10,17 @@
     <div class="product-info">
         <img src="{{product.images.first.image.url}}">
         <p>{{product.title}}</p>
+        {% if allergic_info.0 %}
+            <div class="allergy">
+                <button id="allergywarn" type="button" style="background-color: transparent; border:none; padding:0;" data-toggle="tooltip" data-placement="bottom" title="Your Dog{{allergic_info.1}} {{allergic_info.0}} {{allergic_info.2}} allergic to this product">
+                    <img src="{% static 'shop/images/allergywarn.png' %}" style="height: 1.5em;">
+                </button>
+                <p style="font-size: 100%; height: 1.5em; margin: 0; padding: 0; display: inline-block; color:red;"> Allergies!</p>
+            </div>
+        {% endif %}
     </div>
     <p class="main">
         Added to Cart <img src="{% static 'shop/images/check.png' %}">
     </p>
-    
 </div>
 {% endblock %}

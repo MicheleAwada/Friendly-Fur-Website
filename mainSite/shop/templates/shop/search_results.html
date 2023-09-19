@@ -4,10 +4,19 @@
 <link rel="stylesheet" href="{% static 'shop/product-display.css' %}">
 <link rel="stylesheet" href="{% static 'shop/search_results.css' %}">
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="{% static 'shop/jquery-ui.css' %}">
 
 {% endblock %}
 {% block main %}
+<div class="top">
+{% if product_exists %}
+{{product_count}} Search Results For "{{query}}"
+{% else %}
+<p>
+    Sorry, We Found no results
+</p>
+{% endif %}
+
 <div class="filter">
     <button onclick="showbutton();">
         <img src="{% static 'shop/images/filter-filled-tool-symbol.png' %}">
@@ -18,9 +27,10 @@
 
         <div class="filters">
             <div class="price">
-                <label for="amount">Price range:</label>
-                <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-            
+                <p>
+                    <label for="amount">Price range:</label>
+                    <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                </p>
                 <div id="slider-range"></div>
             </div>
         </div>
@@ -29,9 +39,36 @@
         </button>
     </div>
 </div>
+</div>
+{% if product_exists %}
+{% include 'shop/product_display.html' %}
+{% endif %}
+
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script>
+
+function applyFilters() {
+        $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+        " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+        final_list = [];
+        final_list.push($( "#slider-range" ).slider( "values", 0 ));
+        if ($( "#slider-range" ).slider( "values", 1 ) >= max_price_slider) {
+            final_list.push(-1)
+        }
+        else {
+            final_list.push($( "#slider-range" ).slider( "values", 1 ));
+        }
+    
+        final = final_list.join(",")
+        if (!validateSearch()) {
+            return false;
+        }
+        window.location.href = "{% url 'search' %}" + "?" + "q=" + search_input.value + "&f=" + final;
+    }
+
+
+
 var showFilter=true;
 function showbutton() {
     showFilter = !showFilter;
@@ -44,13 +81,14 @@ function showbutton() {
 }
 showbutton();
 
-const max_price_slider = 501;
+let max_price_slider = 150;
+max_price_slider++;
 $( function() {
 $( "#slider-range" ).slider({
     range: true,
     min: 0,
     max: max_price_slider,
-    values: [ 0, 20 ],
+    values: {{default_slider_values}},
     slide: function( event, ui ) {
         if ( max_price_slider === ui.values[ 1 ] ) {
             $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + "∞" );
@@ -64,13 +102,4 @@ $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
     " - $" + $( "#slider-range" ).slider( "values", 1 ) );
 } ); 
 </script>
-{% if products %}
-{{products.count}} Search Results For "{{query}}"
-{% include 'shop/product_display.html' %}
-{% else %}
-<section>
-    Sorry We Found no results
-</section>
-{% endif %}
-
 {% endblock %}

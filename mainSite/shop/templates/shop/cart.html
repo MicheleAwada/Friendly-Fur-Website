@@ -2,13 +2,64 @@
 {% load static %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'shop/product-display.css' %}">
+<link rel="stylesheet" href="{% static 'shop/cart.css' %}">
 {% endblock %}
-
+{% block title %}
+{% if request.user.user_cart.count == 1 %}
+ - Cart {{request.user.user_cart.count}} item
+ {% else %}
+ - Cart {{request.user.user_cart.count}} items
+ {% endif %}
+{% endblock %}
 {% block main %}
 
-{% if products %}
-{% include 'shop/product_display.html' %}
+{% if cart %}
+<section class="content-section">
+    {% for product, allergic_info, quantity in cart %}
+    <div class="product-display">
+        <div class="product-img">
+            <a href="{% url 'product' slug=product.slug %}">
+                <img src="{{product.images.first.image.url}}">
+            </a>
+        </div>
+        <div class="product-text">
+            <div class="title">
+                <a href="{% url 'product' slug=product.slug %}">
+                    <p>{{product.title}}</p>
+                </a>
+            </div>
+            <div class="product-info">
+                <div class="all_price">
+                    <div class="product-price">
+                        <div>
+                            <span class="currency">$</span>
+                        </div>
+                        <div>
+                            <span class="whole">{{product.price_whole}}</span>
+                        </div>
+                        <div>
+                            <span class="decimal">{{product.price_decimal}}</span>
+                        </div>
+                    </div>
+                    <p class="ship{{product.class_shipping_free}}">{{product.shipping_cost}}</p>
+                </div>
+                <div>
+                    {% if allergic_info.0 %}
+                    <button id="allergywarn" type="button" style="background-color: transparent; border:none; padding:0;" data-toggle="tooltip" data-placement="bottom" title="Your Dog{{allergic_info.1}} {{allergic_info.0}} {{allergic_info.2}} allergic to this product">
+                        <img src="{% static 'shop/images/allergywarn.png' %}" style="height: 1.5em;">
+                    </button>
+                    <p style="font-size: 100%; height: 1.5em; margin: 0; padding: 0; display: inline-block; color:red;"> Allergies!</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="cart_actions">
+                <div class="quantity">Quantity: {{quantity}}</div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
 {% else %}
 <section>
     You dont have items in your cart

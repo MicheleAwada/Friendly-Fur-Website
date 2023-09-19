@@ -1,0 +1,21 @@
+{% extends 'shop/master.html' %}
+{% load static %}
+
+{% block head %}
+  <title>Friendly Fur - {% block title %}{% endblock title %}</title>
+  <link href="{% static 'authe/authe-base.css' %}" rel="stylesheet">
+  {% block authe-head %}{% endblock authe-head %}
+{% endblock head %}
+
+{% block body %}
+<main>
+  <section class="all-content-section">
+    {% include 'shop/messages.html' %}
+    <section class="content-section">
+      <a href="/"><img src="{% static 'shop/images/logo with text.svg' %}" alt="logo"/></a>
+      {% block content %}
+      {% endblock %}
+    </section>
+  </section>
+</main>
+{% endblock body %}

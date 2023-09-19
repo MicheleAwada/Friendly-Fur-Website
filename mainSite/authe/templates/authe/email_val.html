@@ -1,0 +1,18 @@
+{% load static %}
+<div id="load" class="validemail">
+    <svg class="spinner" viewBox="0 0 50 50">
+        <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+    </svg>
+</div>
+<div id="check" class="validemail">
+        <img src="{% static 'authe/images/check.svg' %}">
+</div>
+<div id="fail" class="validemail">
+        <img src="{% static 'authe/images/close.svg' %}">
+</div>
+<div id="error" class="validemail">
+    <span>?</span>
+</div>
+<script>
+    const ajax_url = {% url "is_email_valid" %};
+</script>

@@ -1,0 +1,77 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block head %}
+<title>Friendly Fur - Account Details</title>
+<link rel="stylesheet" href="{% static 'account/account.css' %}">
+<link rel="shortcut icon" href="{% static 'shop/images/favicon.ico' %}" type="image/x-icon">
+{% endblock head %}
+
+{% block main %}
+<section>
+<div class="selection">
+<ul>
+    <li class="current"><a href="{% url 'account-detail' %}"><span>Account Details</span></a></li>
+    <li><a href="#"><span>Returns</span></a></li>
+    <li><a href="#"><span>Orders</span></a></li>
+    <li><a href="#"><span>Tracking</span></a></li>
+    <li><a href="#"><span>Payment methods</span></a></li>
+</ul>
+</div>
+<div class="content">
+    <div class="mb-3">
+        <form method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+                {{field.label}}
+                {{ field }}
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        {{error}}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    {{error}}
+                {% endfor %}
+            {% endif %}
+            <button type="sumbit" class="btn btn-primary">Change Full Name</button>
+        </form>
+    </div>
+    Current Email: {{request.user.email}}
+    <a href="{% url 'email_change' %}" class="btn btn-primary mb-3">
+        Change Email
+    </a>
+    <br>
+    <a href="{% url 'password_change' %}" class="btn btn-primary mb-3">
+        Change Password
+    </a>
+    <br>
+    <div id="dogs" class="mb-5">
+        {{request.user.dog.first.name}}
+        {% if request.user.dogs.exists %}
+        Your Furry Friends:
+        <br>
+        <ul>
+        {% for dog in request.user.dogs.all %}
+        <li>
+            {{dog.name}}
+            <a type="button" class="btn btn-danger" href="{% url 'dogdelete' dog.dog_number %}">
+                ✖
+            </a>
+        </li>
+        {% endfor %}
+        </ul>
+        <a href="{% url 'signdogup' %}" class="btn btn-primary-">Add a dog</a>
+        {% else %}
+        Tell us about your dog, So we can Give reccomendations based on your dog!
+        <a href="{% url 'signdogup' %}" class="btn btn-primary-">Add a dog</a>
+        {% endif %}
+    </div>
+    <br>
+    <a href="{% url 'logout' %}" class="btn btn-primary">
+        Logout?
+    </a>
+</div>
+
+{% endblock %}

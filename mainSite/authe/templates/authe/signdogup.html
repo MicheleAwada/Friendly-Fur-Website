@@ -1,0 +1,183 @@
+{% extends 'authe/base-authe.html' %}
+{% load static %}
+
+{% block authe-head %}
+<link rel="stylesheet" href="{% static 'authe/dog.css' %}">
+<style>
+  #id_allergys_hidden {display: none;}
+  #id_breed_hidden {display: none;}
+  ul {
+    margin: 0;
+    padding: 0;
+
+  }
+</style>
+{% endblock authe-head %}
+
+
+
+{% block title %}Tell us about your dog{% endblock %}
+{% block textmain %}Tell us about your dog{% endblock %}
+{% block text %}<p id="clarification">This can help filter products based on your dogs demands.</p>{% endblock %}
+{% block textbutton %}Sumbit{% endblock %}
+{% block name %}
+<small class="form-text text-muted" style="margin-left: 0.5em;">Required</small>
+{% endblock name %}
+
+
+{% block extra %}
+<script>
+    var allergies_full = [];
+    $(document).ready(function () {
+      const inputField = document.getElementById('id_allergys'); 
+      let all_allergys_list = [];
+      $('#id_allergys').autocomplete({
+        source: function (request, response) {
+          const csrfToken = getCookie('csrftoken');
+          $.ajax({
+            url: '{% url "autocomplete-ajax" %}',
+            method: 'POST',
+            data: JSON.stringify({ allergy: request.term }),
+            contentType: 'application/json',
+            dataType: 'json',
+            headers: {
+              'X-CSRFToken': csrfToken,
+            },
+            success: function (data) {
+              allergies_full = data.results;
+              allergies_full[0].forEach((value,index) => {
+                if (all_allergys_list.includes(value)) {
+                    allergies_full[0].splice(index,1)
+                    allergies_full[1].splice(index,1)
+                }
+              })
+              response(allergies_full[0]);
+            },
+            error: function () {
+            }
+          });
+        },
+        minLength: 1,
+        focus: function() {
+          return false;
+        },
+        select: function (event, ui) {
+          console.log("YES")
+          console.log(all_allergys_list)
+          const selectedValue = ui.item.value;
+
+          if (all_allergys_list.includes(selectedValue)) {
+            return false;  // Prevent duplicate selection
+          }
+
+          inputField.value = "";
+          all_allergys_list.push(selectedValue);
+          $("#id_allergys_hidden").val(JSON.stringify(all_allergys_list));
+
+          let index = all_allergys_list[0].indexOf(ui.item.value);
+          let id = "id_tag_allergy" + index
+          let index_source = allergies_full[0].indexOf(ui.item.value);
+          
+          let newListItem = $('<li>').text(ui.item.value);
+          newListItem.attr("id", id)
+          newListItem.css("background-color", allergies_full[1][index_source]);
+          
+          const selectedList = $('#selected-allergys');
+          selectedList.append(newListItem);
+          updateTextColorBasedOnBackground(id)
+          const newButtonItem = $('<button>').text("✖");
+          newButtonItem.attr("type", "button");
+          newButtonItem.click(function () {
+              $("#selected-allergys #" + id).remove();
+              all_allergys_list.splice(all_allergys_list.indexOf(ui.item.value), 1)
+              $("id_allergys_hidden").val(JSON.stringify(all_allergys_list));
+          })
+          newListItem.append(newButtonItem);
+          return false;
+        }
+      });
+    });
+
+
+
+
+    var breeds_full = [];
+    function idforul(s) {
+        const indexOfParenthesis = s.indexOf("(");
+
+        if (indexOfParenthesis !== -1) {
+        const extractedText = s.substring(0, indexOfParenthesis);
+        return extractedText;
+        } else {
+        return s;
+        }
+    }
+    $(document).ready(function () {
+      const inputField = document.getElementById('id_breed_hidden'); 
+      var all_breeds_list = [];
+      $('#id_breed').autocomplete({
+        source: function (request, response) {
+          const csrfToken = getCookie('csrftoken');
+          $.ajax({
+            url: '{% url "autocomplete-ajax" %}',
+            method: 'POST',
+            data: JSON.stringify({ breed: request.term }),
+            contentType: 'application/json',
+            dataType: 'json',
+            headers: {
+              'X-CSRFToken': csrfToken,
+            },
+            success: function (data) {
+              breeds_full = data.results;
+              breeds_full[0].forEach((value,index) => {
+                if (all_breeds_list.includes(value)) {
+                  breeds_full[0].splice(index,1)
+                  breeds_full[1].splice(index,1)
+                }
+              })
+              response(breeds_full[0]);
+            },
+            error: function () {
+            }
+          });
+        },
+        minLength: 1,
+        focus: function() {
+          return false;
+        },
+        select: function (event, ui) {
+          console.log(all_breeds_list)
+          const selectedValue = ui.item.value;
+
+          if (all_breeds_list.includes(selectedValue)) {
+              return false;  // Prevent duplicate selection
+          }
+
+          all_breeds_list.push(selectedValue);
+          $("#id_breed_hidden").val(JSON.stringify(all_breeds_list));
+
+          let index = all_breeds_list[0].indexOf(ui.item.value);
+          let id = "id_tag_breed" + index
+          let index_source = breeds_full[0].indexOf(ui.item.value);
+
+          let newListItem = $('<li>').text(ui.item.value);
+          newListItem.attr("id", id)
+          newListItem.css("background-color", breeds_full[1][index_source]);
+          
+          const selectedList = $('#selected-breeds');
+          selectedList.append(newListItem);
+          updateTextColorBasedOnBackground(id)
+          const newButtonItem = $('<button>').text("✖");
+          newButtonItem.attr("type", "button");
+          newButtonItem.click(function () {
+            $("#selected-breeds #"+id).remove();
+            all_breeds_list.splice(index, 1)
+            $("id_breed_hidden").val(JSON.stringify(all_breeds_list));
+          })
+          newListItem.append(newButtonItem);
+          return false;
+        }
+      });
+    });
+</script>
+{% endblock extra %}

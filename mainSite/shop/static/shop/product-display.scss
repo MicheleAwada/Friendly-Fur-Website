@@ -1,3 +1,5 @@
+@import "colors";
+
 @mixin product-width() {
     $columns: floor(100vw/312px);
 
@@ -5,21 +7,23 @@
 
 section.content-section {
     display: flex;
+    width: 100%;
     flex-flow: row wrap;
     justify-content: space-around;
     align-items: stretch;
 }
-$product-width: 256px;
+$product-width: 250px;
 .product-display {
     margin: 12px 0;
     padding: 0 0 12px 0;
-    background-color: darken(white,5%);
-    border: 1px solid #333333;
+    background-color: white;
+    border: 2px solid $light;
     overflow: hidden;
     border-radius: 5px;
     width: $product-width;
     height: auto;
     .product-img {
+        background-color: $light;
         width: $product-width;
         height: $product-width;
         a {
@@ -42,7 +46,7 @@ $product-width: 256px;
                 text-decoration: none;
                 color:#333333;
                 p:hover{
-                    color: darken(#f2c14e,16%);
+                    color: darken(#80DED9,6%);
                 }
    
                 p {
@@ -63,7 +67,7 @@ $product-width: 256px;
                 color:#333333;
    
                 p {
-                    color: #ff6b6b;
+                    color: #E16F7C;
                     margin: 8px 0 2px 0;
                     font-size: 1.25em;
                     font-weight: 700;

@@ -1,0 +1,16 @@
+{% extends 'authe/base-authe.html' %}
+{% load static %}
+
+{% block authe-head %}
+<link rel="stylesheet" href="{% static 'authe/email_val.css' %}">
+<script src="{% static 'authe/email_val.js' %}" defer></script>
+{% endblock authe-head %}
+
+{% block title %}Email Change{% endblock %}
+{% block textmain %}Change Your Email{% endblock %}
+{% block textbutton %}Send Email{% endblock %}
+{% block small %}<small>Email changes won't be applied until you click the verification link sent to your email.</small>{% endblock small %}
+
+{% block email %}
+{% include 'authe/email_val.html' %}
+{% endblock email %}

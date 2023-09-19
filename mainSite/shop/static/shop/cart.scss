@@ -1,0 +1,78 @@
+@import "colors";
+
+
+.content-section {
+    background-color:white;
+    padding: 0.4% 44px;
+    padding-left: 10px;
+    padding-top: 0;
+    .product-display {
+        display: flex;
+        margin-right: 192px;
+        background-color: $light;
+        padding-bottom: 16px;
+        border: none;
+        border-bottom: $slate 1px solid;
+        a {
+            text-decoration: none;
+            color: $teal;
+        }
+        .product-img {
+            img {
+                box-sizing: border-box;
+                padding: 16px;
+                height: 256px;
+                width: 256px;
+                object-fit: contain;
+            }
+        }
+        .product-text {
+            .title {
+                a {
+                    p {
+                        margin-top: 4%;
+                        color:#3A86FF;
+                        width:60%;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 1;
+                        overflow: hidden;
+                    }
+                }
+            }
+        }
+        .product-info {
+            .all_price {
+                display: flex;
+                gap:20px;
+                align-items: center;
+                .product-price {
+                    display: flex;
+                    position: relative;
+                    .currency {
+                        position: relative;
+                        top:0.25em;
+                        font-size: 0.75em;
+                    }
+                    .whole {    
+                        font-size: 2em;
+                    }
+                    .decimal {
+                        position: relative;
+                        font-size: 1em;
+                        top: 0.3333em;
+                    }
+                }
+                .ship {
+                    font-size: 1.25em;
+                    margin: 0;
+                    font-weight: 300;
+                }
+                .freeship {
+                    font-size: 1.5em;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}

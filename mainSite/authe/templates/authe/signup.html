@@ -1,4 +1,10 @@
 {% extends 'authe/base-authe.html' %}
+{% load static %}
+
+{% block authe-head %}
+    <link rel="stylesheet" href="{% static 'authe/email_val.css' %}">
+    <script src="{% static 'authe/email_val.js' %}" defer></script>
+{% endblock authe-head %}
 
 {% block title %}Sign up{% endblock %}
 {% block textmain %}Create an Account{% endblock %}
@@ -6,3 +12,7 @@
 {% block texturl1 %}Have a Account? {% endblock %}
 {% block texturl2 %}{% url 'login' %}{% endblock %}
 {% block texturl3 %}Log in{% endblock %}
+
+{% block email %}
+{% include 'authe/email_val.html' %}
+{% endblock email %}

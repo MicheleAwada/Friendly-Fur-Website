@@ -1,67 +1,177 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
-* {
+p, span {
   color: #333333;
+}
+
+* {
   font-family: "Open Sans", sans-serif;
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 2fr 3fr 2fr;
   height: 60px;
   width: 100%;
-  background-color: #1A237E;
+  background-color: #145168;
 }
 @media (max-width: 800) {
   header {
     height: 162px;
   }
 }
-header a img {
+header .first {
+  display: flex;
+  align-items: center;
+}
+header .first > a {
+  width: auto;
+  height: auto;
+}
+header .first > a img {
   box-sizing: border-box;
-  padding: 4%;
+  padding: 6px;
   width: auto;
   height: 60px;
 }
 @media (max-width: 800) {
-  header a img {
+  header .first > a img {
     height: 162px;
   }
 }
-header #search {
+header .search_div {
+  display: flex;
+  align-items: center;
+}
+header .search_div #search {
   border: solid rgb(43, 43, 59) 1px;
   display: flex;
   overflow: hidden;
   border-radius: 8px;
-  width: 35%;
+  width: 100%;
   height: 75%;
   margin: 0 2%;
 }
-header #search > input {
+header .search_div #search > input {
   background-color: white;
   height: auto;
   font-size: 100%;
-  width: 100%;
   flex-grow: 1;
   border: none;
   order: 0;
   padding-left: 8px;
   border-radius: 4px 0 0 4px;
 }
-header #search button {
+header .search_div #search button {
   border: none;
-  background-color: #3A86FF;
+  background-color: #80DED9;
   height: 100%;
-  width: auto;
+  width: 45px;
 }
-header #search button img {
+@media (max-width: 800) {
+  header .search_div #search button {
+    width: 121.5px;
+  }
+}
+header .search_div #search button img {
   box-sizing: border-box;
   padding: 1.75% 1.75% 1.75% 3%;
-  background-color: #3A86FF;
+  background-color: #80DED9;
   height: 100%;
   width: auto;
   order: 1;
   cursor: pointer;
+}
+header nav {
+  box-sizing: border-box;
+  padding-right: 12px;
+  display: flex;
+  justify-content: flex-end;
+  height: 100%;
+}
+header nav #cart {
+  height: 100%;
+  width: 60px;
+  aspect-ratio: 1/1;
+  position: relative;
+  margin: 0 16px;
+}
+header nav #cart span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 1px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  left: 61.88086%;
+  top: 6%;
+  right: auto;
+  float: none;
+  font-family: "Open Sans", sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 27px;
+  color: #ECD444;
+}
+@media (max-width: 800) {
+  header nav #cart span {
+    font-size: 72.9px;
+  }
+}
+header nav #cart img {
+  margin: 0;
+  height: 100%;
+}
+header nav #account {
+  box-sizing: border-box;
+  padding: 7px;
+  height: 100%;
+}
+header nav #account > * > img {
+  height: 100%;
+}
+header nav #account button {
+  height: 100%;
+  border: none;
+  background-color: transparent;
+}
+header nav #account .info {
+  display: none;
+  overflow: hidden;
+  z-index: 1000;
+  transform-origin: top left;
+  width: 260px;
+  position: absolute;
+  top: 68px;
+  right: 7px;
+  background-color: white;
+  border: #37474F 1px solid;
+  border-radius: 16px;
+}
+@media (max-width: 800) {
+  header nav #account .info {
+    top: 170px;
+  }
+}
+header nav #account .info > p {
+  padding: 9px 10px;
+  text-align: center;
+  font-size: 1.5em;
+  background-color: #F5F5F5;
+  margin: 0;
+}
+header nav #account .info ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+header nav #account .info ul li {
+  display: block;
+  background-color: #F5F5F5;
+  border: gainsboro solid 1px;
+  font-size: 1.5em;
+  padding: 5px 0 5px 10px;
+  margin: 0;
 }
 
 body {

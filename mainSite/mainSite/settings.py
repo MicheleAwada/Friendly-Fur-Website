@@ -36,10 +36,11 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
-    'misc.apps.MiscConfig',
-    'home.apps.HomeConfig',
-    'authe.apps.AutheConfig',
-    'shop.apps.ShopConfig',
+    "account",
+    'misc',
+    'home',
+    'authe',
+    'shop',
     'django.contrib.postgres',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -149,13 +151,14 @@ LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 
 #for sending emails
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_USE_SSL = False
-# EMAIL_HOST_USER = config('EMAIL')
-# EMAIL_HOST_PASSWORD = config('PASSWORD')
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = config('EMAIL')
+EMAIL_HOST_PASSWORD = config('PASSWORD')
+EMAIL_FROM = 'noreply@friendlyfur.com'
 #end for sending emails
 
 AUTH_USER_MODEL = 'authe.CustomerUser'

@@ -1,8 +1,14 @@
-{% extends 'authe/base.html' %}
+{% extends 'authe/authe-base.html' %}
 {% block title %}
 Log Out
 {% endblock %}
 {% block content %}
 <p class="center big-text big-text-padding">Logged Out</p>
 <p class="center normal-text-padding">You've logged out of your account</p>
+Back to <a href="/">Home</a>
+<br>
+<br>
+<a href="{% url 'login' %}">Login </a>
+or
+<a href="{% url 'signup' %}"> Signup</a>
 {% endblock %}
