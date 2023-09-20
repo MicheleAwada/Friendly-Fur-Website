@@ -23,6 +23,14 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.http import Http404
 
 @login_required
+def delete_user(request):
+    if request.method=="POST":
+        request.user.delete()
+        messages.success(request, "Account delete")
+        return redirect("/")
+    return render(request, "authe/delete_user.html", {"name": request.user.first_name})
+
+@login_required
 def signdogup(request):
     if request.method=="POST":
         form = CustomerDogForm(request.POST)

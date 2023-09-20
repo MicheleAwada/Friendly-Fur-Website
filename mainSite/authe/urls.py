@@ -3,6 +3,7 @@ from django.urls import path, include
 from .views import signup, CustomLoginView, CustomLogoutView, email_verification, is_email_valid, autocomplete_ajax
 from . import views
 urlpatterns = [
+    path("delete_account/", views.delete_user, name="delete_user"),
     path("login/", CustomLoginView.as_view(), name='login'),
     path("logout/", CustomLogoutView.as_view(), name='logout'),
     path("", include(autheUrls)),

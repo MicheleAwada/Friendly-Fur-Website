@@ -29,7 +29,6 @@
 <script>
     var allergies_full = [];
     $(document).ready(function () {
-      const inputField = document.getElementById('id_allergys'); 
       let all_allergys_list = [];
       $('#id_allergys').autocomplete({
         source: function (request, response) {
@@ -62,15 +61,13 @@
           return false;
         },
         select: function (event, ui) {
-          console.log("YES")
-          console.log(all_allergys_list)
           const selectedValue = ui.item.value;
 
           if (all_allergys_list.includes(selectedValue)) {
             return false;  // Prevent duplicate selection
           }
 
-          inputField.value = "";
+          $('#id_allergys').val("");
           all_allergys_list.push(selectedValue);
           $("#id_allergys_hidden").val(JSON.stringify(all_allergys_list));
 
@@ -113,7 +110,6 @@
         }
     }
     $(document).ready(function () {
-      const inputField = document.getElementById('id_breed_hidden'); 
       var all_breeds_list = [];
       $('#id_breed').autocomplete({
         source: function (request, response) {
@@ -146,13 +142,13 @@
           return false;
         },
         select: function (event, ui) {
-          console.log(all_breeds_list)
           const selectedValue = ui.item.value;
 
           if (all_breeds_list.includes(selectedValue)) {
               return false;  // Prevent duplicate selection
           }
 
+          $('#id_breed').val("");
           all_breeds_list.push(selectedValue);
           $("#id_breed_hidden").val(JSON.stringify(all_breeds_list));
 

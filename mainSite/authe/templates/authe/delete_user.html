@@ -1,0 +1,13 @@
+{% extends "authe/authe-base.html" %}
+
+{% block content %}
+
+<h1>{{name}} are you sure you want to <span style='color:red;'>Delete</span> your account?</h1>
+<form method="POST">
+    {% csrf_token %}
+    <button type="sumbit" class="btn btn-danger">
+        Delete
+    </button>
+</form>
+
+{% endblock content %}

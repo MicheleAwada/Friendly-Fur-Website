@@ -53,7 +53,7 @@ def show_allergic(user, products):
             for i in range(len(products_allergy_info)):
                 if products_allergy_info[i][0]:
                     if len(products_allergy_info[i][
-                               0]):  # more than one dog to add proper prunuctation like dogs and are instead of dog and is
+                               0])>1:  # more than one dog to add proper prunuctation like dogs and are instead of dog and is
                         products_allergy_info[i][1] = "s"
                         products_allergy_info[i][2] = "are"
                     else:
@@ -73,7 +73,7 @@ def one_show_allergic(user, product):
                             product_allergy_info[0].append(dog.name)
                             break
             if product_allergy_info[0]:
-                if len(product_allergy_info[0]):  # more than one dog to add proper prunuctation like dogs and are instead of dog and is
+                if len(product_allergy_info[0])>1:  # more than one dog to add proper prunuctation like dogs and are instead of dog and is
                     product_allergy_info[1] = "s"
                     product_allergy_info[2] = "are"
                 else:
@@ -187,7 +187,7 @@ def product_detail(request, slug):
 
 def brand_detail(request, slug):
     brand = get_object_or_404(Brand, slug=slug)
-    products = brand.brand_produxcts.all()
+    products = brand.brand_products.all()
     context = {'brand': brand}
     context["products"] = show_allergic(request.user, products)
 
