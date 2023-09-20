@@ -187,7 +187,7 @@ def product_detail(request, slug):
 
 def brand_detail(request, slug):
     brand = get_object_or_404(Brand, slug=slug)
-    products = brand.brand_prodcuts.all();
+    products = brand.brand_produxcts.all()
     context = {'brand': brand}
     context["products"] = show_allergic(request.user, products)
 

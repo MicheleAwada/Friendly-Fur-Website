@@ -186,7 +186,7 @@
   color: red;
 }
 .all-product-details section.right .ingredients button {
-  background-color: none;
+  background-color: transparent;
   padding: 0 0 8px 4px;
   border: none;
   cursor: pointer;
