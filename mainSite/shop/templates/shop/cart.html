@@ -55,6 +55,11 @@
             <div class="cart_actions">
                 <div class="quantity">Quantity: {{quantity}}</div>
             </div>
+            <form method="post" action="{% url 'cart_delete' %}">
+                {% csrf_token %}
+                <input type="hidden" name="cart_item_id" value="{{ product.id }}">
+                <button type="sumbit" class="remove_cart_item">Remove</button>
+            </form>
         </div>
     </div>
     {% endfor %}

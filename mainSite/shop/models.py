@@ -74,7 +74,7 @@ class Product(models.Model):
 
     # search_vector = SearchVectorField(null=True, editable=False)
 
-    brand = models.ForeignKey(Brand, null=True, related_name="brand_prodcuts", verbose_name="Product's brand", on_delete=models.CASCADE)
+    brand = models.ForeignKey(Brand, null=True, related_name="brand_products", verbose_name="Product's brand", on_delete=models.CASCADE)
     about_product = models.OneToOneField(AboutProduct,on_delete=models.SET_NULL, null=True, blank=True)
     product_ingredients = models.ManyToManyField("authe.PossibleAllergies",blank=True)
 

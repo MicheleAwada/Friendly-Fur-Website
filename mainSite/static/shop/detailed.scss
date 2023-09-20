@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import 'colors';
+
+* {
+    font-family: "Open Sans", sans-serif;
+}
+.all-product-details {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 1%;
+    .main-product-details {
+        // img {
+        //     display: inline;
+        // }
+        
+        overflow: hidden;
+        display: flex;
+        width: 100%;
+        height:auto;
+        &>.image {
+            position: sticky;
+            top:0px;
+            height: 480px;
+            display: inline-flex;
+            
+
+            &>.image-select-all {
+                display: inline-flex;
+                flex-flow: column nowrap;
+                margin: 12px;
+                #imageselector1 {
+                    img {
+                        border: 3px solid #3A86FF;
+                    }
+                }
+                .image-select {
+                    img {
+                        box-sizing: border-box;
+                        margin: 4px 0;
+                        padding: 2px;
+                        height: 40px;
+                        width: 40px;
+                        object-fit: contain;
+                        border-radius: 4px;
+                        cursor: pointer;
+                        border: 1px solid #333333;
+                    }
+                }
+            }
+            &>.image-main-div {
+                display: inline;
+                img {
+                    height: 480px;
+                    width: 480px;
+                    object-fit: contain;
+                    vertical-align: center;
+                }
+            }
+        }
+
+
+
+        &>.info {
+            background-color: white;
+            border-radius: 24px;
+            flex-grow: 1;
+            margin: 0;
+            padding: 13px;
+            .title {
+                margin: 0;
+                font-size: 2em;
+            }
+            .type {
+                margin: 0.3em;
+                margin-top: 0;
+                font-size: 1.5em;
+                color:#E16F7C;
+            }
+            .brand{
+                margin: 0.5em;
+                margin-top: 0;
+                a {
+                    margin: 0;
+                    padding: 0;
+                    text-decoration: none;
+                    color: #3A86FF;
+                }
+            }
+            .desc {
+                margin: 0.5em;  
+            }
+        }
+    }
+    section.right {
+        &>.transaction {
+            border: darken($light,5%) 1px solid;
+            border-radius: 8px;
+            margin: 0 1em 1em 1em;
+            padding: 0.5em 1em;
+            .all_price {
+                margin-bottom: 11%;
+                .product-price {
+                    display: flex;
+                    position: relative;
+                    font-family: "Open Sans", sans-serif;
+                    line-height: initial;
+                    .currency {
+                        position: relative;
+                        top:0.25em;
+                        font-size: 0.75em;
+                    }
+                    .whole {    
+                        font-size: 2em;
+                    }
+                    .decimal {
+                        position: relative;
+                        font-size: 1em;
+                        top: 0.3333em;
+                    }
+                }
+                .shipping {
+                    white-space:nowrap;
+                    margin: 0;
+                    &.freeship {
+                        font-weight: 500;
+                        font-size: 1.25em;
+                    }
+                    p {
+                        margin:0;
+                    }
+                }
+            }
+            .product-availibility{
+                margin-bottom: 11%;
+                p {
+                    margin: 0;
+                }
+                .stock {
+                    p {
+                        font-size: 1.5em;
+                    }
+                    p.stock {
+                        color: rgb(131, 212, 9);
+                    }
+                    p.notstock {
+                        color: red;
+                    }
+                }
+                form {
+                    #quantity {
+                        padding-bottom: 10px;
+                    }
+                }
+            }
+            form {
+                #quantity {
+                    margin-bottom: 5.5%;
+                }
+                #addtocart {
+                    display: block;
+                    cursor: pointer;
+                    text-decoration: none;
+                    white-space: nowrap;
+                    font-size: 1.25em;
+                    color: #ffffff;
+                    background-color: #FF6F00;
+                    border-radius: 16px;
+                    padding: 2px 8px;
+                    margin: 0;
+                    border: none;
+                }
+            }
+        }
+        .ingredients{
+
+            height: auto;
+            &>p {
+                text-align: center;
+                font-weight: 600;
+            }
+            ul {
+                list-style-type: none;
+                padding: 0;
+                li {
+                    display: flex;
+                    align-items: center;
+                    text-align: left;
+                    p{display: inline;margin: 0 0.5em 0 0;}
+                }
+                li.dont-show {
+                    display: none;
+                }
+                li.allergy {
+                    p{color:red;}
+                }
+            }
+            button {
+                background-color: none;
+                &:hover, &:active {
+                    background-color: inherit;
+                }
+                padding: 0 0 8px 4px;
+                border:none;
+                cursor: pointer;
+                p{
+                    &:hover {
+                        color: darken(#3A86FF, 10%);
+                    }
+                    color: #3A86FF;
+                    padding: 0;
+                    margin: 0;
+                }
+            }
+            float: right;
+            padding: 8px 16px;
+            border-radius: 24px;
+            background-color: darken(white, 10%);
+            margin: 0 12px;
+        }
+        .about {
+            .main {
+                display: block;
+                text-align: center;
+                font-weight: 600;
+            }
+            ul {
+                padding: 0;
+                list-style-type: none;
+            }
+            float: right;
+            padding: 8px 16px;
+            border-radius: 24px;
+            background-color: darken(white, 10%);
+            margin: 0 12px;
+        }
+    }
+}

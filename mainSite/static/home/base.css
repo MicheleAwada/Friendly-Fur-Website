@@ -1,0 +1,180 @@
+@font-face {
+    font-family: "MondayFeelings";
+    src: url(font/MondayFeelings.ttf) format("truetype");
+}
+
+* {
+    margin:0;
+    padding:0;
+}
+
+header {
+    position: fixed;
+    top:0;
+    z-index: 10000;
+    height:10vh;
+    width:100%;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(235,235,235);
+    margin:0;
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+    background-color: white;
+    font-size: 2.33vmin;
+}
+
+
+#logoImage {
+    height:10vh;
+}
+
+.nav__links {
+    list-style: none;
+}
+
+.nav__links li{
+    display:inline-block;
+}
+
+.nav__links li a{
+    text-decoration: none;
+    transition: all 0.3s ease 0s;
+    font-size: 24px;
+}
+
+.nav__links li a:hover{
+    /* color: lightskyblue; */
+    color: #4d79ff;
+}
+
+.nav__links li a, .link-nav-buttons {
+    font-family: 'MondayFeelings', sans-serif;
+    font-weight: 500;
+    color: rgb(43,27,23);
+    margin:16px;
+}
+.link-nav-buttons, .button1 {
+    text-align: center;
+    font-size: 16px;
+    background-color: #668cff;
+    /* background-image: linear-gradient(to right, #668cff, #56CAC8); */
+    padding: 8px 16px;
+    color:white;
+    border-radius: 50px;
+    transition: all 270ms ease 0s;
+    border: none;
+    text-decoration: none;
+}
+.link-nav-buttons {
+    margin: 16px;
+}
+.link-nav-buttons:hover, .button1:hover{
+    background-color: #4d79ff;
+    /* background-image: linear-gradient(to right, #4d79ff, #51c8c6); */
+    /* padding: 10px;
+    margin: 40px;
+    font-size: 30px; */
+    
+    cursor:pointer;
+}
+
+.link-login-button, .button2{
+    background-image: none;
+    background-color: white;
+    border: solid 3px #668cff;
+    text-decoration: none;
+    color: rgb(43,27,23);
+}
+.link-login-button:hover, .button2:hover{
+    background-image: none;
+    background-color: rgb(235,235,235);
+    border: solid 3px #4d79ff;
+    color: rgb(43,27,23);
+}
+
+main, footer{
+    position: relative;
+    top: 10vh;
+}
+
+footer {
+    background-color: hsl(213, 100%, 19%);
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+footer #info {
+    background-color: #002c54;
+    margin-top: auto;
+    height: 2.5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer #info a{
+    text-decoration: none;
+    margin: 0 4%;
+    font-family: "Montserrat";
+}
+
+footer>#main {
+    display: flex;
+    height: 80%;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin: 3% 0;
+}
+
+footer * {color:white;}
+
+.brand-slogan {
+    font-family: "MondayFeelings";
+}
+
+.flex-symbol {
+    display: flex;
+    flex-flow: row nowrap;
+    height: 1.5em;
+    align-items: center;
+    margin: 3% 0;
+}
+
+.flex-symbol img{
+    height: 100%;
+    width: auto;
+    margin: 0.25em;
+    display: inline;
+}
+.flex-symbol text {
+    font-size: 1.5em;
+    font-family: "Montserrat";
+}
+
+footer a {
+    text-decoration: none;
+}
+
+#main-txt {
+    font-size: 2em;
+    font-family: "Montserrat";
+    font-weight: 600;
+}
+
+#browse a{
+    display: block;
+    font-size: 1.5em;
+    font-family: "Montserrat";
+}
+
+dl, ul, ol {
+    margin-bottom: 0;
+    padding-left: 0;
+}

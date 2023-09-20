@@ -1,0 +1,81 @@
+@import "colors";
+
+main {
+    display: flex;
+    flex-flow: column nowrap;
+    > section {
+        display: flex;
+    }
+}
+
+.alert {
+    margin: 0;
+}
+
+.selection {
+    padding-bottom: 2vw;
+    ul {
+        margin:0;
+        padding: 0;
+        list-style-type: none;
+        border: none;
+        border-right: lighten($slate,24%) 1px solid;
+        border-bottom: lighten($slate,24%) 1px solid;
+        padding: 4px;
+        li {
+            cursor: pointer;
+            background-color: white;
+            border:none;
+            // &:hover {
+            //     a {
+            //         background-color: darken(white,10%);
+            //         text-decoration: underline;
+            //     }
+            // }
+            // &:active {
+            //     a {
+            //         background-color: darken(white,15%);
+            //     }
+            // }
+            a {
+                color:$slate;
+                border-radius: 4px;
+                display: flex;
+                color: $slate;
+                padding: 12px;
+                padding-left: 18px;
+                padding-right: 28px;
+                text-decoration: none;
+                height: 100%;
+                width: 100%;
+                span {
+                    font-size: 1.33em;
+                    color: $slate;
+                }
+            }
+        }
+        li.current {
+            a {
+                background-color: $teal;
+                span{color: white;}
+            }
+            // &:hover {
+            //     a {
+            //         background-color: darken($teal,2%);
+            //         text-decoration: underline;
+            //     }
+            // }
+            // &:active {
+            //     a{
+            //         background-color: darken($teal,5%);
+            //     }
+            // }
+        }
+    }
+}
+
+.content {
+    flex-grow: 1;
+    background-color: $light;
+    padding: 1vw;
+}

@@ -33,6 +33,11 @@
   -webkit-line-clamp: 1;
   overflow: hidden;
 }
+.content-section .product-display .product-text .remove_cart_item {
+  color: red;
+  background-color: transparent;
+  border: none;
+}
 .content-section .product-display .product-info .all_price {
   display: flex;
   gap: 20px;

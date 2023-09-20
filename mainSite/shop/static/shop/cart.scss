@@ -38,7 +38,12 @@
                         -webkit-line-clamp: 1;
                         overflow: hidden;
                     }
-                }
+                }   
+            }
+            .remove_cart_item {
+                color:red;
+                background-color: transparent;
+                border: none;
             }
         }
         .product-info {

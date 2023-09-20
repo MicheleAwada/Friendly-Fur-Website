@@ -15,6 +15,20 @@ from django.forms.models import model_to_dict
 from misc.views import MessageLoginRequiredMixin
 from django.http import HttpResponseNotFound
 # Create your views here.
+def truncate_sentence(sentence, max_length=22):
+    # Check if the sentence length is within the maximum length
+    if len(sentence) <= max_length:
+        return sentence
+
+    # Find the last space within the maximum length
+    last_space_index = sentence.rfind(' ', 0, max_length)
+
+    # If no space is found, truncate at max_length and add "..."
+    if last_space_index == -1:
+        return sentence[:max_length] + '...'
+
+    # Truncate at the last space and add "..."
+    return sentence[:last_space_index] + '...'
 def join_strings_with_commas(strings):
     if len(strings) == 0:
         return ""
@@ -106,6 +120,27 @@ class cartPage(MessageLoginRequiredMixin, TemplateView):
         context['cart'] = [(product, allergies, quantity) for (product,allergies), quantity in zip(products_allergies, cart_quantity)]
         print(list(context["cart"]))
         return context
+@login_required
+def cart_delete(request):
+    if request.method=="POST":
+        id = request.POST.get('cart_item_id')
+        print(id)
+        product = get_object_or_404(Product, pk=id)
+        print(product)
+        if product:
+            cart = request.user.user_cart.filter(product=product)
+            print(request.user.user_cart.first())
+            print(cart)
+            if not cart.exists():
+                raise HttpResponseBadRequest()
+            cart = cart.first()
+            cart.delete()
+            messages.success(request, f"Deleted {truncate_sentence(product.title)} from Cart")
+            return redirect(reverse("cart"))
+        else:
+            raise HttpResponseBadRequest()
+    else:
+        raise HttpResponseBadRequest()
 class shopPage(TemplateView):
     template_name = 'shop/shop.html'
 
@@ -184,7 +219,7 @@ def search_view(request):
         rank = SearchRank(vector, query, weights=[0.04,0.2,0.4,1.0])
         products = products.annotate(
             rank=rank
-        ).filter(rank__gt=0).order_by("-rank")
+        ).filter(rank__gte=0.2).order_by("-rank")
     raw_filter = request.GET.get('f','')
     if raw_filter:
         filters = raw_filter.split(",")

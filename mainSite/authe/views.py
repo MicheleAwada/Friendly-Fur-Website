@@ -21,6 +21,7 @@ from django.shortcuts import get_object_or_404
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import Http404
+
 @login_required
 def signdogup(request):
     if request.method=="POST":
@@ -164,15 +165,10 @@ def email_verification(request, uid64, token):
     if not user.exists():
         messages.error(request, f"Account Doesn't exists or expired. <a href='{reverse('signup')}'>Create Account Again?</a>")
         return redirect("/")
-    print(user)
     user = user.first()
     if not default_token_generator.check_token(user, token):
         messages.error(request, "Wrong Token")
         return redirect("/")
-    # if user.is_expired():
-    #     messages.error(request, "Unverified Account Expired. <a href='{reverse('signup')}'>Create Account Again?</a>")
-    #     return redirect("/")
-    # REMOVED since we will automatically remove accounts if their expired
     if not user.verf_user:
         verified_user = CustomerUser(email=user.email, password=user.password, first_name=user.first_name, middle_name=user.middle_name, last_name=user.last_name)
         #hade el code bt3mil a user w kteer halwe ;)

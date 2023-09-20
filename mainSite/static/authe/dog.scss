@@ -1,0 +1,94 @@
+@import "colors";
+
+.ui-helper-hidden-accessible {
+    display: none;
+}
+
+#clarification {
+    
+}
+
+input {
+    padding-left: 0.25em;
+}
+
+//#ui-id-1, #ui-id-2
+.ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front {
+    background-color: $light;
+    box-sizing: initial;
+    z-index: 100;
+    width: 1em;
+    max-height: 165px;
+    overflow: auto;
+    list-style-type: none;
+    margin: none;
+    padding: 6px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    li {
+        div {width: auto;}
+        width: auto;
+        cursor: pointer;
+        padding: 8px;
+        &:hover {
+            background-color: lighten($deep-Blue,30%);
+            color: white;
+        }
+    }
+}
+
+
+
+#age-gender {
+    display: flex;
+    gap: 1vw;
+    align-items: stretch;
+    width: 100%;
+    #id_age {
+        width: auto;
+    }
+    #gender {
+        select {
+            background-color: #eff9fc;
+            padding: 0.25em 0.75em;
+            border: none;
+            height: 2em;
+            width: 100%; 
+            cursor: pointer; /* Add a pointer cursor */
+
+        }
+    }
+    #age{
+        input {
+            width: 100%;
+        }
+        flex-grow: 1;
+    }
+    input {
+        width: 100%;
+    }
+}
+
+
+
+.tags {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-flow: row wrap;
+    li {
+        display: inline-flex;
+        align-items: center;
+        gap:0.75em;
+        box-sizing: border-box;
+        padding: 2px 14px;
+        margin:4px;
+        background-color: red;
+        border-radius: 100vmin;
+        button {
+            color: inherit;
+            background-color: transparent;
+            border: none;
+        }
+    }
+    background-color: none;
+}

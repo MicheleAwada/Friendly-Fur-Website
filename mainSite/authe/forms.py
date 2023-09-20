@@ -4,15 +4,15 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import Group
 import json
 from django.core.validators import MinValueValidator, MaxValueValidator
-
+from django.contrib.auth.hashers import make_password
 
 class EmailChange(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
         super(EmailChange, self).__init__(*args, **kwargs)
 
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput())
+    email = forms.EmailField(label="New Email")
+    password = forms.CharField(label="Account Password",widget=forms.PasswordInput())
 
     def clean_email(self):
         email = self.cleaned_data["email"]
@@ -25,17 +25,14 @@ class EmailChange(forms.ModelForm):
             raise forms.ValidationError("You Must have a User")
         if not self.user.check_password(self.cleaned_data.get("password")):
             raise forms.ValidationError("Password isn't correct")
-        return password
+        return "Pass"
     def save(self, commit=True):
         if self.user:
-            self.cleaned_data["first_name"] = self.user.first_name
-            self.cleaned_data["middle_name"] = self.user.middle_name
-            self.cleaned_data["last_name"] = self.user.last_name
             unverf_user = super(EmailChange, self).save(commit=False)
-            unverf_user.user = self.user
+            unverf_user.verf_user = self.user
+
             if commit:
                 unverf_user.save()
-
             return unverf_user
         else:
             raise forms.ValidationError("Incorrect Password")
@@ -97,7 +94,6 @@ class CustomerDogForm(forms.ModelForm):
             dog.save()
             allergies_data = self.cleaned_data.get("allergys_hidden")
             breeds_data = self.cleaned_data.get("breed_hidden")
-            print("HI"+breeds_data)
             if allergies_data:
                 allergies_data = json.loads(allergies_data)
                 allergys_query_set = PossibleAllergies.objects.filter(name__in=allergies_data)
@@ -105,7 +101,6 @@ class CustomerDogForm(forms.ModelForm):
             if breeds_data:
                 breeds_data = json.loads(breeds_data)
                 breeds_query_set = PossibleBreeds.objects.filter(name__in=breeds_data)
-                print(breeds_query_set)
                 dog.breed.add(*breeds_query_set)
         return dog
 

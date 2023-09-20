@@ -1,0 +1,82 @@
+.ui-helper-hidden-accessible {
+  display: none;
+}
+
+input {
+  padding-left: 0.25em;
+}
+
+.ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front {
+  background-color: #F5F5F5;
+  box-sizing: initial;
+  z-index: 100;
+  width: 1em;
+  max-height: 165px;
+  overflow: auto;
+  list-style-type: none;
+  margin: none;
+  padding: 6px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+.ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front li {
+  width: auto;
+  cursor: pointer;
+  padding: 8px;
+}
+.ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front li div {
+  width: auto;
+}
+.ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front li:hover {
+  background-color: #5561dc;
+  color: white;
+}
+
+#age-gender {
+  display: flex;
+  gap: 1vw;
+  align-items: stretch;
+  width: 100%;
+}
+#age-gender #id_age {
+  width: auto;
+}
+#age-gender #gender select {
+  background-color: #eff9fc;
+  padding: 0.25em 0.75em;
+  border: none;
+  height: 2em;
+  width: 100%;
+  cursor: pointer; /* Add a pointer cursor */
+}
+#age-gender #age {
+  flex-grow: 1;
+}
+#age-gender #age input {
+  width: 100%;
+}
+#age-gender input {
+  width: 100%;
+}
+
+.tags {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-flow: row wrap;
+  background-color: none;
+}
+.tags li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75em;
+  box-sizing: border-box;
+  padding: 2px 14px;
+  margin: 4px;
+  background-color: red;
+  border-radius: 100vmin;
+}
+.tags li button {
+  color: inherit;
+  background-color: transparent;
+  border: none;
+}/*# sourceMappingURL=dog.css.map */
