@@ -28,6 +28,7 @@
 {% block extra %}
 <script>
     var allergies_full = [];
+    var allergys_increasing = 0;
     $(document).ready(function () {
       let all_allergys_list = [];
       $('#id_allergys').autocomplete({
@@ -67,13 +68,15 @@
             return false;  // Prevent duplicate selection
           }
 
+
           $('#id_allergys').val("");
           all_allergys_list.push(selectedValue);
           $("#id_allergys_hidden").val(JSON.stringify(all_allergys_list));
 
-          let index = all_allergys_list[0].indexOf(ui.item.value);
-          let id = "id_tag_allergy" + index
+          let index = all_allergys_list.length;
           let index_source = allergies_full[0].indexOf(ui.item.value);
+          allergys_increasing++
+          let id = "id_tag_allergy" + allergys_increasing
           
           let newListItem = $('<li>').text(ui.item.value);
           newListItem.attr("id", id)
@@ -81,7 +84,7 @@
           
           const selectedList = $('#selected-allergys');
           selectedList.append(newListItem);
-          updateTextColorBasedOnBackground(id)
+          updateTextColorBasedOnBackground(id )
           const newButtonItem = $('<button>').text("✖");
           newButtonItem.attr("type", "button");
           newButtonItem.click(function () {
@@ -99,6 +102,7 @@
 
 
     var breeds_full = [];
+    var breed_increasing = 0;
     function idforul(s) {
         const indexOfParenthesis = s.indexOf("(");
 
@@ -152,8 +156,9 @@
           all_breeds_list.push(selectedValue);
           $("#id_breed_hidden").val(JSON.stringify(all_breeds_list));
 
-          let index = all_breeds_list[0].indexOf(ui.item.value);
-          let id = "id_tag_breed" + index
+          let index = all_breeds_list.length;
+          breed_increasing++
+          let id = "id_tag_breed" + breed_increasing;
           let index_source = breeds_full[0].indexOf(ui.item.value);
 
           let newListItem = $('<li>').text(ui.item.value);
