@@ -93,6 +93,9 @@
         }
     }
     section.right {
+        display: flex;
+        flex-flow: column nowrap;
+        gap:16px;
         &>.transaction {
             border: darken($light,5%) 1px solid;
             border-radius: 8px;
