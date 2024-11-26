@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from .models import Product, Brand
-from authe.models import CustomerCart
+from authe.models import CustomerCart, CustomerUser
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.contrib.postgres.aggregates import ArrayAgg
 from django.urls import reverse
 from django.shortcuts import redirect, get_object_or_404
 from .forms import add_to_cart
-from django.http import JsonResponse, HttpResponseBadRequest
+from django.http import JsonResponse, HttpResponseBadRequest, Http404
 import json
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -156,25 +156,23 @@ def product_detail(request, slug):
     # if is_ajax:
     if request.method == "POST":
         form = add_to_cart(request.POST)
-        if request.user.is_authenticated and form.is_valid():
+        if not request.user.is_authenticated:
+            return redirect(reverse('login'))
+        if form.is_valid():
             quantity = int(form.cleaned_data['quantity'])
             product = get_object_or_404(Product, slug=slug)
-
-            if request.user.user_cart.filter(product__slug=slug): #if already in cart add one to quantity
-                existing_product = request.user.user_cart.filter(product__pk=product.pk).first()
-                if not (existing_product.quantity > product.quantity):
-                    existing_product.quantity += quantity
-                    existing_product.save()
-                else:
-                    return render(request, 'shop/cart_product_error.html')
+            product_in_user = request.user.user_cart.filter(product__pk=product.pk)
+            if product_in_user.exists(): #if already in cart, add one to quantity
+                existing_product = product_in_user.first()
+                existing_product.quantity += quantity
+                existing_product.save()
             else:
                 new_cart = CustomerCart(quantity=quantity, product=product)
                 new_cart.save()
                 request.user.user_cart.add(new_cart)
             return redirect(reverse('added_to_cart', kwargs={'slug': product.slug}))
-        else:
-            # messages.success(request, )
-            return redirect(reverse('login'))
+
+
     # else:
     #     return JsonResponse({'status': 'Invalid request'}, status=400)
     else:
@@ -246,10 +244,16 @@ def search_view(request):
     context["products"] = show_allergic(request.user, products)
     return render(request, 'shop/search_results.html', context)
 
-@login_required
-def addtocart(request, slug):
-    cart = get_object_or_404(CustomerCart, product__slug=slug)
 
+def addtocart(request, slug):
+    if not request.user.is_authenticated:
+        messages.warning(request, "You must be logged in to add to cart")
+        return redirect(reverse('login'))
+    cart = request.user.user_cart.filter(product__slug=slug)
+    if not cart.exists():
+        raise Http404
+
+    cart = cart.first()
 
     context = {'quantity':cart.quantity, "product":cart.product,}
     context["allergic_info"] = one_show_allergic(request.user, cart.product)
