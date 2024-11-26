@@ -12,23 +12,25 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 100%;
             font-family: Arial, sans-serif;
         }
 
         .container {
             text-align: center;
-            max-width: 600px;
+            max-width: 60%;
         }
 
         img {
-            height:30vmin;
+            height:30vh;
             width:auto;
+            object-fit: contain;
         }
 
         h1 {
             font-size: 3rem;
-            margin-bottom: 20px;
+            margin-top: 0;
+            margin-bottom: 1.25rem;
         }
 
         p {
@@ -44,7 +46,7 @@
 </head>
 <body>
     <div class="container">
-        <img src="{% static 'misc/custom404.svg %}">
+        <img src="{% static 'misc/custom404.svg' %}" alt="Confused Logo">
         <h1>Oops! Page Not Found</h1>
         <p>We couldn't find the page you were looking for.</p>
         <a class="btn btn-primary-" href="/">Go back to Home</a>
