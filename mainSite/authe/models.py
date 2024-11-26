@@ -47,7 +47,12 @@ class CustomerUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, first_name, last_name, password=None, **extra_fields):
+    def create_superuser(self, email, first_name, last_name, password, **extra_fields):
+        print("password")
+        print(password)
+        print(email)
+        print(first_name)
+        print(last_name)
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
 
@@ -63,7 +68,9 @@ class CustomerUserManager(BaseUserManager):
 class CustomerCart(models.Model):
     # save_for_later = models.BooleanField(default=False)
     quantity = models.PositiveIntegerField()
-    product = models.OneToOneField("shop.Product", related_name="in_carts", verbose_name="Users Cart", on_delete=models.CASCADE)
+    product = models.ForeignKey("shop.Product", related_name="in_carts", verbose_name="Users Cart", on_delete=models.CASCADE)
+    def __str__(self):
+        return self.product.title
     class Meta:
         verbose_name = "Cart"
         verbose_name_plural = "Cart"
@@ -141,7 +148,7 @@ class UnverifiedUser(AbstractBaseUser):
     verification_token = models.CharField(max_length=100, null=True, blank=True)
     user_expiry = models.DateTimeField(null=True, blank=True)
     def get_url(self):
-        return reverse("verify", kwargs={"uid64":urlsafe_base64_encode(force_bytes(self.id)),"token":self.token()})
+        return "https://friendlyfur.micheleawada.com"+reverse("verify", kwargs={"uid64":urlsafe_base64_encode(force_bytes(self.id)),"token":self.token()})
     def token(self):
         self.verification_token = default_token_generator.make_token(self)
         self.user_expiry = datetime.now() + timedelta(hours=3)
