@@ -98,7 +98,7 @@ header{
             }
         }
     }
-    nav {
+    >nav {
         box-sizing: border-box;
         padding-right: 12px;
         display: flex;
@@ -144,6 +144,60 @@ header{
                 height: 100%;
                 border: none;
                 background-color: transparent;
+            }
+            #recommendation {
+                display: block;
+                position: absolute;
+                top: 68px;
+                right: 7px;
+                background-color: white;
+                border: #37474F 1px solid;
+                border-radius: 8px;
+                box-sizing: initial;
+                padding: 1rem;
+                z-index: 1000;
+                .close {
+                    position: absolute;
+                    width: 1.25rem;
+                    height: 1.25rem;
+                    padding: 0;
+                    background-color: transparent;
+                    border: none;
+                    top:8px;
+                    right:12px;
+                    cursor: pointer;
+                }
+                hr {
+                    margin: 6px 0;
+                }
+                >p.main {
+                    padding: 0;
+                    font-size: 1rem;
+                    font-weight: 600;
+                }
+                p {
+                    font-size: 0.75rem;
+                    text-align: center;
+                    span.bold {
+                        font-weight: 600;
+                    }
+                }
+                nav {
+                    display: flex;
+                    justify-content: center;
+                    gap: 1rem;
+                }
+                div#triangle {
+                    transform: rotate(45deg);
+                    width: 0.6rem;
+                    height: 0.6rem;
+                    position: absolute;
+                    left: 88.66%;
+                    top:calc( (0.3rem + 1px) * -1 );
+                    background-color: white;
+                    border-top: #37474F 1px solid;
+                    border-left: #37474F 1px solid;
+                }
             }
             .info {
                 display: none;
