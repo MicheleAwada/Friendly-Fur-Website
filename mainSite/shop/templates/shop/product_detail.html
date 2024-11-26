@@ -46,12 +46,6 @@
                     <p>{{product.shipping_cost}}</p>
                 </div>
             </div>
-            <!-- <form method="POST">
-                {% csrf_token %}
-                <button id="addtocart" type="sumbit">
-                    Add To Cart
-                </button>
-            </form> -->
             <div class="product-availibility">
                 <div class="stock">
                     <p class="{{product.in_stock_class}}">
@@ -97,14 +91,14 @@
                 </li>
                 {% endfor %}
                 </ul>
-                {% endif %}
                 {% if product.product_ingredients.count > 3 %}
                 <button id="showmoreingredients">
                     <p>See More</p>
                 </button>
+                {% endif %}
             </div>
-            {% endif %}
-            {% if product.about_product %}
+        {% endif %}
+        {% if product.about_product %}
             <div class="about">
                 <p class="main">
                     About Product:
@@ -126,7 +120,7 @@
                     {% endif %}
                 </p>
             </div>
-            {% endif %}
+        {% endif %}
     </section>
 </section>
 {% if product.product_ingredients.all %}
