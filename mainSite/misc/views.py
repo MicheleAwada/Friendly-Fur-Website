@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-def custom404(request, exception):
+def custom404(request, exception, *args, **kwargs):
     return render(request, "misc/custom404.html", status=404)
 
 class MessageLoginRequiredMixin(LoginRequiredMixin):
