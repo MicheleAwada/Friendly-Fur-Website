@@ -81,21 +81,21 @@ header .search_div #search button img {
   order: 1;
   cursor: pointer;
 }
-header nav {
+header > nav {
   box-sizing: border-box;
   padding-right: 12px;
   display: flex;
   justify-content: flex-end;
   height: 100%;
 }
-header nav #cart {
+header > nav #cart {
   height: 100%;
   width: 60px;
   aspect-ratio: 1/1;
   position: relative;
   margin: 0 16px;
 }
-header nav #cart span {
+header > nav #cart span {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -114,28 +114,82 @@ header nav #cart span {
   color: #ECD444;
 }
 @media (max-width: 800) {
-  header nav #cart span {
+  header > nav #cart span {
     font-size: 72.9px;
   }
 }
-header nav #cart img {
+header > nav #cart img {
   margin: 0;
   height: 100%;
 }
-header nav #account {
+header > nav #account {
   box-sizing: border-box;
   padding: 7px;
   height: 100%;
 }
-header nav #account > * > img {
+header > nav #account > * > img {
   height: 100%;
 }
-header nav #account button {
+header > nav #account button {
   height: 100%;
   border: none;
   background-color: transparent;
 }
-header nav #account .info {
+header > nav #account #recommendation {
+  display: block;
+  position: absolute;
+  top: 68px;
+  right: 7px;
+  background-color: white;
+  border: #37474F 1px solid;
+  border-radius: 8px;
+  box-sizing: initial;
+  padding: 1rem;
+  z-index: 1000;
+}
+header > nav #account #recommendation .close {
+  position: absolute;
+  width: 1.25rem;
+  height: 1.25rem;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  top: 8px;
+  right: 12px;
+  cursor: pointer;
+}
+header > nav #account #recommendation hr {
+  margin: 6px 0;
+}
+header > nav #account #recommendation > p.main {
+  padding: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+header > nav #account #recommendation p {
+  font-size: 0.75rem;
+  text-align: center;
+}
+header > nav #account #recommendation p span.bold {
+  font-weight: 600;
+}
+header > nav #account #recommendation nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+header > nav #account #recommendation div#triangle {
+  transform: rotate(45deg);
+  width: 0.6rem;
+  height: 0.6rem;
+  position: absolute;
+  left: 88.66%;
+  top: calc((0.3rem + 1px) * -1);
+  background-color: white;
+  border-top: #37474F 1px solid;
+  border-left: #37474F 1px solid;
+}
+header > nav #account .info {
   display: none;
   overflow: hidden;
   z-index: 1000;
@@ -149,23 +203,23 @@ header nav #account .info {
   border-radius: 16px;
 }
 @media (max-width: 800) {
-  header nav #account .info {
+  header > nav #account .info {
     top: 170px;
   }
 }
-header nav #account .info > p {
+header > nav #account .info > p {
   padding: 9px 10px;
   text-align: center;
   font-size: 1.5em;
   background-color: #F5F5F5;
   margin: 0;
 }
-header nav #account .info ul {
+header > nav #account .info ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
-header nav #account .info ul li {
+header > nav #account .info ul li {
   display: block;
   background-color: #F5F5F5;
   border: gainsboro solid 1px;
