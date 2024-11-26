@@ -115,13 +115,14 @@ def signup(request):
             user = form.save()
             full_name = form.cleaned_data.get("full_name")
             print(user.email)
+            url = user.get_url()
             email = EmailMessage("Account Created For Friendly Fur",
                          f"Hello {full_name}, We're Glad your deciding to spoil your dog by using Friendly Fur;)\n"+
-                         f"Verification Link: {user.get_url()}",
+                         f"Verification Link: {url}",
                          "noreply@friendlyfur.com",
                          [user.email])
             email.send()
-            messages.success(request, f"Account created. Verify via email.")
+            messages.success(request, f"Account created. Verify via email. CHEATCHEAT -> verify now: {url}")
             return redirect("/")
     else:
         form = UserRegisterForm()
