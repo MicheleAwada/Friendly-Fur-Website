@@ -6,6 +6,7 @@ import os
 from django.utils.text import slugify
 from django.contrib.postgres.search import SearchVectorField
 from django.contrib.postgres.fields import ArrayField
+from PIL import Image
 
 
 def validate_positve(x):
@@ -47,7 +48,7 @@ class Brand(models.Model):
     name = models.CharField(max_length=50, unique=True)
     description = models.TextField(max_length=4000, blank=True, null=True)
 
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(unique=True, blank=True, max_length=400)
 
 
 
@@ -65,7 +66,7 @@ class Product(models.Model):
         ("MC", "Monthly Crates"),
     ]
     type_code = models.CharField(max_length=2, choices=TYPES)
-    title = models.CharField(max_length=200, unique=True)
+    title = models.CharField(max_length=400, unique=True)
     description = models.TextField()
     price = models.DecimalField("Product Price", max_digits=10, decimal_places=2, validators=[validate_positve])
     ship_price = models.DecimalField("Shipping Cost", max_digits=10, decimal_places=2, validators=[validate_positve], default=0)
@@ -104,15 +105,49 @@ class Product(models.Model):
     def __str__(self):
         return self.title
     def save(self, *args, **kwargs):
+        print("yes")
         if not self.slug:
+            slug_number=0
+            try_slug = ""
+            while slug_number<100:
+                if slug_number:
+                    try_slug = slugify(f"{self.title}{slug_number}")
+                else:
+                    try_slug = slugify(self.title)
+                if not Product.objects.filter(slug=try_slug).exists():
+                    self.slug = try_slug
+                    super().save(*args, **kwargs)
+                    return
+                else:
+                    slug_number += 1
+                    
+            raise ValidationError("too much slug changes, choose dif one")
+        else:
             try:
-                self.slug = slugify(self.title)  # Use slugify from django.utils.text
+                self.slug = slugify(self.title)
             except:
-                raise ValidationError("slug is already taken")
-        super().save(*args, **kwargs)
+                raise ValidationError("slug taken")
+            else:
+                super().save(*args, **kwargs)
+                return
+
+def insert_directory(path, insert_dir):
+    # Split the path into components
+    components = path.split(os.path.sep)
+
+    # Insert the new directory at the desired position
+    components.insert(2, insert_dir)
+
+    # Join the components to form the new path
+    new_path = os.path.sep.join(components)
+
+    return new_path
 
 class ProductImages(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="images for product",related_name="images")
     image = models.ImageField(upload_to='product/images/')
     def __str__(self):
         return f"{self.product.title}'s image:  {os.path.basename(self.image.name)}"
+    def descaled_url(self):
+
+        return insert_directory(self.image.url,"descaled")
