@@ -38,7 +38,7 @@
                         {% if request.user.is_authenticated %}
                         {{request.user.user_cart.count}}
                         {% else %}
-                        
+                        0
                         {% endif %}
                     </span>
                 </div>
@@ -48,10 +48,41 @@
                     <button onclick="account_info_show();">
                         <img src="{% static 'shop/images/account-icon.svg' %}">
                     </button>
+                    {% if not request.user.dogs.exists %}
+                        <div id="recommendation">
+                            <img class="close" onclick="$('#recommendation').remove()" src="{% static 'shop/images/x icon.png' %}">
+                            <p class="main">
+                                Add dog
+                            </p>
+                            <hr>
+                            <p>
+                                Allows you to <span class="bold">detect allergies</span> of your dog
+                            </p>
+                            <nav>
+                                <a href="{% url 'signdogup' %}">Create</a>
+                            </nav>
+                            <div id="triangle"></div>
+                        </div>
+                    {% endif %}
                 {% else %}
                     <a href="{% url 'login' %}">
                         <img src="{% static 'shop/images/account-icon.svg' %}">
                     </a>
+                    <div id="recommendation">
+                        <img class="close" onclick="$('#recommendation').remove()" src="{% static 'shop/images/x icon.png' %}">
+                        <p class="main">
+                            Create Account
+                        </p>
+                        <hr>
+                        <p>
+                            Allows you to add your dogs and get <span class="bold">allergy detection</span>
+                        </p>
+                        <nav>
+                            <a href="{% url 'signup' %}">Create</a>
+                            <a href="{% url 'login' %}">Log In</a>
+                        </nav>
+                        <div id="triangle"></div>
+                    </div>
                 {% endif %}
                 <div class="info" id="accountinfo">
                     {% if request.user.is_authenticated %}
